@@ -349,3 +349,48 @@ No.
 - If you use `final` with a **method**, then you cannot override it in the subclass.
 - If you use `final` with a **class**, then that class cannot be extended.
 - If you use `final` with an **object type**, then that object cannot be referenced again.
+
+## Question 14: What is a Marker Interface?
+### Answer:
+A **Marker Interface** is an interface that does not contain any methods or fields. Some common marker interfaces in Java include:
+- `Cloneable`
+- `Serializable`
+- `Remote`
+
+It is a common misconception that marker interfaces signal something to the JVM or compiler; in reality, they do not. Instead, they serve as a way to check for certain behaviors using the `instanceof` operator.
+
+#### Example: Cloneable Interface
+In Java, you cannot call the `clone()` method on an object unless the class implements the `Cloneable` interface. This is enforced using:
+```java
+if (!(obj instanceof Cloneable)) {
+    throw new CloneNotSupportedException();
+}
+```
+Similarly, for serialization, `ObjectOutputStream` checks if an object implements `Serializable` before writing it:
+```java
+if (!(obj instanceof Serializable)) {
+    throw new NotSerializableException();
+}
+```
+
+## Question 15: Can you write your own custom Marker Interface?
+### Answer:
+Yes! Since marker interfaces are just used for classification and checked using `instanceof`, you can define your own.
+
+#### Example:
+```java
+public interface MyMarkerInterface {
+}
+
+public class MyClass implements MyMarkerInterface {
+}
+
+public class Main {
+    public static void main(String[] args) {
+        MyClass obj = new MyClass();
+        if (obj instanceof MyMarkerInterface) {
+            System.out.println("Object is an instance of MyMarkerInterface");
+        }
+    }
+}
+```
