@@ -988,3 +988,119 @@ public class OrderController {
    → It makes dependencies explicit, supports immutability, and is easier to test.
 2. **Can we use Lombok to reduce boilerplate constructor code?**
    → Yes, `@AllArgsConstructor` and `@NoArgsConstructor` can generate constructors automatically.  
+
+
+   ### What is called first, constructor or init block?
+
+#### **Answer:**
+In Java, the **instance initializer block (init block)** is executed **before** the constructor when an object is created. The order of execution is:
+1. **Static Initializer Block** (if any, executes only once when the class is loaded)
+2. **Instance Initializer Block** (executes before the constructor on every object creation)
+3. **Constructor**
+
+#### **Example:**
+```java
+class Example {
+    // Instance initializer block
+    {
+        System.out.println("Instance Initializer Block executed");
+    }
+
+    // Constructor
+    Example() {
+        System.out.println("Constructor executed");
+    }
+    
+    public static void main(String[] args) {
+        Example obj1 = new Example();
+        Example obj2 = new Example();
+    }
+}
+```
+
+#### **Output:**
+```
+Instance Initializer Block executed
+Constructor executed
+Instance Initializer Block executed
+Constructor executed
+```
+
+#### **Explanation:**
+- The instance initializer block runs **before** the constructor **each time** an object is created.
+- The constructor runs **after** the instance initializer block.
+- If multiple instance initializer blocks exist, they run **in the order they appear** in the class before the constructor.
+
+#### **Cross-questions:**
+1. What happens if a constructor explicitly calls another constructor using `this()`?
+   → The initializer block still executes **before** any constructor.
+2. Can an instance initializer block access instance variables?
+   → Yes, it can initialize instance variables before the constructor runs.
+3. What is the difference between static and instance initializer blocks?
+   → Static blocks execute once per class loading, whereas instance blocks execute on every object creation.
+
+### Using Copy Constructor to Perform Deep Copy in Java
+
+#### **What is a Copy Constructor?**
+A **copy constructor** is a special type of constructor that creates a new object by copying the values of an existing object. This is particularly useful when performing a **deep copy**, ensuring that changes in the copied object do not affect the original object.
+
+#### **Example of a Copy Constructor for Deep Copy**
+```java
+class Address {
+    String city;
+    String country;
+    
+    Address(String city, String country) {
+        this.city = city;
+        this.country = country;
+    }
+    
+    // Copy Constructor
+    Address(Address address) {
+        this.city = address.city;
+        this.country = address.country;
+    }
+}
+
+class Employee {
+    String name;
+    int age;
+    Address address;
+    
+    Employee(String name, int age, Address address) {
+        this.name = name;
+        this.age = age;
+        this.address = address;
+    }
+    
+    // Copy Constructor for Deep Copy
+    Employee(Employee emp) {
+        this.name = emp.name;
+        this.age = emp.age;
+        this.address = new Address(emp.address); // Creating new Address object
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Address addr1 = new Address("New York", "USA");
+        Employee emp1 = new Employee("John", 30, addr1);
+        
+        // Creating a deep copy using the copy constructor
+        Employee emp2 = new Employee(emp1);
+        
+        // Modifying the address in the copied object
+        emp2.address.city = "Los Angeles";
+        
+        // Checking if the original object is affected
+        System.out.println(emp1.name + " lives in " + emp1.address.city); // Output: John lives in New York
+        System.out.println(emp2.name + " lives in " + emp2.address.city); // Output: John lives in Los Angeles
+    }
+}
+```
+
+#### **Key Takeaways:**
+- A copy constructor allows deep copying by creating **new instances** of mutable fields (like `Address` in the example).
+- If an object contains only primitive data types, default cloning (shallow copy) may suffice.
+- Using a copy constructor avoids `Cloneable` and `clone()` method complexities, making code easier to manage.
+- This ensures that modifying one object does not unintentionally modify another.
