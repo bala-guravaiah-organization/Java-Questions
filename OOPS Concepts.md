@@ -394,3 +394,89 @@ public class Main {
     }
 }
 ```
+## Ambiguity method overloading in java
+
+```java
+public class Test {
+    public void print(int a, long b) {
+        System.out.println("Method 1");
+    }
+
+    public void print(long a, int b) {
+        System.out.println("Method 2");
+    }
+
+    public static void main(String[] args) {
+        Test obj = new Test();
+        obj.print(5, 10); // Compilation Error
+    }
+}
+```
+
+### Explanation:
+The above code results in a **compilation error** because the method call `obj.print(5, 10);` is ambiguous. Here’s why:
+
+- The first method `print(int a, long b)` expects an `int` as the first argument and a `long` as the second argument.
+- The second method `print(long a, int b)` expects a `long` as the first argument and an `int` as the second argument.
+- The provided arguments `5` and `10` are both of type `int`. Java’s compiler gets confused because:
+  - It can promote `5` to `long` for the second method.
+  - It can promote `10` to `long` for the first method.
+
+Since Java does not have a clear rule to resolve this ambiguity, the compilation fails with an **error: The method print(int, long) is ambiguous for the type Test**.
+
+### Fix:
+To avoid ambiguity, you can explicitly cast one of the arguments:
+
+```java
+obj.print(5L, 10); // Calls Method 2
+obj.print(5, 10L); // Calls Method 1
+```
+
+---
+
+### Method Overriding Example:
+
+```java
+class Parent {
+    public void print(int a, long b) {
+        System.out.println("Parent: Method 1 (int, long)");
+    }
+
+    public void print(long a, int b) {
+        System.out.println("Parent: Method 2 (long, int)");
+    }
+}
+
+class Child extends Parent {
+    @Override
+    public void print(int a, long b) {
+        System.out.println("Child: Overridden Method 1 (int, long)");
+    }
+}
+
+public class OverridingExample {
+    public static void main(String[] args) {
+        Parent obj1 = new Parent();
+        obj1.print(5, 10L); // Calls Parent: Method 1
+        obj1.print(5L, 10); // Calls Parent: Method 2
+
+        Parent obj2 = new Child();
+        obj2.print(5, 10L); // Calls Child: Overridden Method 1
+        obj2.print(5L, 10); // Calls Parent: Method 2
+    }
+}
+```
+
+### Output:
+```
+Parent: Method 1 (int, long)
+Parent: Method 2 (long, int)
+Child: Overridden Method 1 (int, long)
+Parent: Method 2 (long, int)
+```
+
+### Explanation:
+- If a method is overridden in a subclass, the overridden version is called when using a reference of the parent class pointing to a child object.
+- `print(int, long)` is overridden, so the child class's method is executed.
+- `print(long, int)` is not overridden, so the parent class's method is used even when the reference is of type `Parent` but pointing to a `Child` object.
+
