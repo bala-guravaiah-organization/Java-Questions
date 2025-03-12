@@ -224,13 +224,13 @@ List<String> names = menu.stream()
 
 ---
 
-## **3. Real-World Analogy**
+### **3. Real-World Analogy**
 - **External Iteration**: Asking a child to put away toys one by one ("Is there a toy? Put it in the box.")
 - **Internal Iteration**: Telling a child "Put all the toys in the box" and letting them handle it efficiently.
 
 ---
 
-## **4. Comparison Table: External vs. Internal Iteration**
+### **4. Comparison Table: External vs. Internal Iteration**
 
 | Feature               | External Iteration (Java 7) | Internal Iteration (Java 8) |
 |----------------------|----------------------|----------------------|
@@ -332,5 +332,37 @@ Here, `count()` is a terminal operation that returns a `long`, while `filter`, `
 
 ---
 
+### What are the Differences Between Intermediate and Terminal Operations
+
+| Feature               | Intermediate Operations        | Terminal Operations          |
+|-----------------------|--------------------------------|------------------------------|
+| **Definition**       | Transforms a stream into another stream | Produces a result or side-effect and consumes the stream |
+| **Execution**       | **Lazy** (Executed only when a terminal operation is called) | **Eager** (Triggers stream processing immediately) |
+| **Return Type**      | Returns another `Stream<T>` (supports chaining) | Returns a non-stream value (like `List<T>`, `int`, `boolean`, etc.) |
+| **Effect on Stream** | Does not terminate the stream | Terminates the stream (cannot reuse it) |
+| **Examples**        | `filter()`, `map()`, `sorted()`, `distinct()`, `limit()`, `skip()` | `forEach()`, `collect()`, `reduce()`, `count()`, `min()`, `max()`, `anyMatch()` |
+| **Execution Order** | Deferred until a terminal operation is encountered | Executes immediately when invoked |
+| **Usage**           | Used for data transformation | Used to get final results from the stream |
+
+### Example
+```java
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class StreamExample {
+    public static void main(String[] args) {
+        List<Integer> numbers = Arrays.asList(2, 3, 4, 5, 6, 7);
+
+        // Intermediate Operations (lazy)
+        List<Integer> squaredNumbers = numbers.stream()
+                .filter(n -> n % 2 == 0)  // Intermediate
+                .map(n -> n * n)          // Intermediate
+                .collect(Collectors.toList()); // Terminal
+
+        System.out.println(squaredNumbers); // Output: [4, 16, 36]
+    }
+}
+```
 
 
