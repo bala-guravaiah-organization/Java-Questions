@@ -188,20 +188,15 @@ List<String> names = menu.stream()
 
 ---
 
-### **3. Real-World Analogy**
-- **External Iteration**: Asking a child to put away toys one by one ("Is there a toy? Put it in the box.")
-- **Internal Iteration**: Telling a child "Put all the toys in the box" and letting them handle it efficiently.
 
----
-
-### **4. Comparison Table: External vs. Internal Iteration**
+### **3. Comparison Table: External vs. Internal Iteration**
 
 | Feature               | External Iteration (Java 7) | Internal Iteration (Java 8) |
 |----------------------|----------------------|----------------------|
 | **Control**         | Programmer controls iteration | Java manages iteration |
 | **Code Complexity** | More verbose, requires loops | Concise and expressive |
 | **Performance**     | Slower, manually optimized | Faster, optimized by JVM |
-| **Parallel Processing** | Hard to implement | Built-in with `.parallelStream()` |
+| **Parallel Processing** | Hard to implement | Built-in ith `.parallelStream()` |
 | **Readability**     | Imperative and lengthy | Functional and declarative |
 
 ---
