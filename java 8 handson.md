@@ -160,3 +160,67 @@ long count = menu.stream()
                  .limit(3) // Limits to 3 dishes
                  .count(); // Counts the remaining elements
 ```
+
+### process a list of words, split them into characters, flatten them into a single stream, remove duplicates, and collect the unique characters into a list.
+
+```java
+public class MergeArraysDemo {
+	public static void main(String[] args) {
+
+		// {"apple", "banana"}
+		List<String> words = Arrays.asList("apple", "banana");
+
+		List<String> uniqueCharacters = words.stream()
+				// ["a", "p", "p", "l", "e"], ["b", "a", "n", "a", "n", "a"]
+				.map(word -> word.split(""))
+				// ["a", "p", "p", "l", "e"] + ["b", "a", "n", "a", "n", "a"]
+				// =="a", "p", "p", "l", "e", "b", "a", "n", "a", "n", "a"
+				.flatMap(Arrays::stream)
+				// "a", "p", "l", "e", "b", "n"
+				.distinct().collect(Collectors.toList());
+
+		// Print the unique characters
+		System.out.println(uniqueCharacters);
+	}
+}
+```
+
+### Step-by-Step Explanation
+1. **Splitting Words into Character Arrays (`map(word -> word.split(""))`)**
+   - Each word is split into an array of characters.
+   - Example: 
+     ```
+     "apple"  -> ["a", "p", "p", "l", "e"]
+     "banana" -> ["b", "a", "n", "a", "n", "a"]
+     ```
+
+2. **Flattening Arrays into a Single Stream (`flatMap(Arrays::stream)`)**
+   - This converts multiple arrays into a single stream of characters.
+   - Example:
+     ```
+     ["a", "p", "p", "l", "e"] + ["b", "a", "n", "a", "n", "a"]
+     -> Stream: "a", "p", "p", "l", "e", "b", "a", "n", "a", "n", "a"
+     ```
+
+3. **Removing Duplicates (`distinct()`)**
+   - Eliminates duplicate characters from the stream.
+   - Example:
+     ```
+     "a", "p", "p", "l", "e", "b", "a", "n", "a", "n", "a" 
+     -> "a", "p", "l", "e", "b", "n"
+     ```
+
+4. **Collecting into a List (`collect(Collectors.toList())`)**
+   - Stores the final unique characters into a `List<String>`.
+
+### Expected Output
+```
+[a, p, l, e, b, n]
+```
+
+### Summary
+- `split("")` converts each word into an array of characters.
+- `flatMap(Arrays::stream)` merges multiple arrays into a single stream.
+- `distinct()` ensures only unique characters remain.
+- `collect(Collectors.toList())` gathers the result into a list.
+
