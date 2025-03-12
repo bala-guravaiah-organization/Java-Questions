@@ -1,5 +1,3 @@
-
-
 ## **What is stream Processing?**
 Stream processing is a method of handling data as a continuous sequence of elements. Instead of processing data in bulk, it allows for efficient and real-time operations.
 
@@ -13,41 +11,7 @@ Stream processing is a method of handling data as a continuous sequence of eleme
 
 3. **Chaining Streams**  
    - The **output stream** of one program can serve as the **input stream** of another.  
-
 ---
-
-### **Practical Example (Java 8 Stream API)**  
-Suppose we have a list of integers, and we want to **filter even numbers**, **double them**, and **collect them into a list**.
-
-### **Java 8 Code Example**
-```java
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
-public class StreamExample {
-    public static void main(String[] args) {
-        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-
-        // Stream Processing: Filter even numbers, double them, and collect to a list
-        List<Integer> processedNumbers = numbers.stream()
-                .filter(n -> n % 2 == 0)  // Step 1: Filter even numbers
-                .map(n -> n * 2)         // Step 2: Double each number
-                .collect(Collectors.toList()); // Step 3: Collect results into a list
-
-        System.out.println(processedNumbers); // Output: [4, 8, 12]
-    }
-}
-```
-
-### **Explanation:**
-1. **Stream is created** from a list of integers.  
-2. **Filtering step** removes odd numbers, keeping only even ones.  
-3. **Mapping step** doubles each remaining number.  
-4. **Collecting step** gathers the results into a list.  
-5. **Final output:** `[4, 8, 12]`  
-
-This demonstrates **stream processing**—data is processed **sequentially** without modifying the original list.
 
 ### **What Are Streams?**
 Streams are an update to the Java API that allow you to manipulate collections of data in a **declarative way**. Instead of coding an **ad hoc implementation**, you express a **query** to process the data efficiently.
@@ -241,24 +205,11 @@ List<String> names = menu.stream()
 | **Readability**     | Imperative and lengthy | Functional and declarative |
 
 ---
-## What are Java 8 Stream Operations
+### What are Java 8 Stream Operations
 
-## **Overview**
 The `Stream` interface in `java.util.stream` defines many operations, classified into two categories:
 - **Intermediate Operations**: These return another stream and allow method chaining.
 - **Terminal Operations**: These produce a final result or side effect and close the stream.
-
-### **Example Stream Pipeline**
-```java
-List<String> names = menu.stream()                                    
-       .filter(dish -> dish.getCalories() > 300)   // Intermediate operation  
-       .map(Dish::getName)            // Intermediate operation  
-       .limit(3)                       // Intermediate operation  
-       .collect(toList());             // Terminal operation
-```
-- `filter`, `map`, and `limit` form an intermediate operation pipeline.
-- `collect` executes the pipeline and closes the stream.
-
 ---
 
 ### **Intermediate Operations**
@@ -289,18 +240,12 @@ Mapping: chicken
 [pork, beef, chicken]
 ```
 - Only the first three dishes are selected due to **short-circuiting**.
-- **Loop fusion** optimizes `filter` and `map` into a single pass.
-
 ---
 
 ### **Terminal Operations**
 Terminal operations consume the stream and produce a final result, such as a `List`, `Integer`, or even `void`.
 
-### **Example of Terminal Operation**
-```java
-menu.stream().forEach(System.out::println);
-```
-### **Another Example:**
+### **Example:**
 ```java
 long count = menu.stream()
                  .filter(dish -> dish.getCalories() > 300)
@@ -308,7 +253,18 @@ long count = menu.stream()
                  .limit(3)
                  .count(); // Terminal operation
 ```
-Here, `count()` is a terminal operation that returns a `long`, while `filter`, `distinct`, and `limit` are intermediate operations.
+---
+### What are the Differences Between Intermediate and Terminal Operations
+
+| Feature               | Intermediate Operations        | Terminal Operations          |
+|-----------------------|--------------------------------|------------------------------|
+| **Definition**       | Transforms a stream into another stream | Produces a result or side-effect and consumes the stream |
+| **Execution**       | **Lazy** (Executed only when a terminal operation is called) | **Eager** (Triggers stream processing immediately) |
+| **Return Type**      | Returns another `Stream<T>` (supports chaining) | Returns a non-stream value (like `List<T>`, `int`, `boolean`, etc.) |
+| **Effect on Stream** | Does not terminate the stream | Terminates the stream (cannot reuse it) |
+| **Examples**        | `filter()`, `map()`, `sorted()`, `distinct()`, `limit()`, `skip()` | `forEach()`, `collect()`, `reduce()`, `count()`, `min()`, `max()`, `anyMatch()` |
+| **Execution Order** | Deferred until a terminal operation is encountered | Executes immediately when invoked |
+| **Usage**           | Used for data transformation | Used to get final results from the stream |
 
 ---
 
@@ -332,37 +288,6 @@ Here, `count()` is a terminal operation that returns a `long`, while `filter`, `
 
 ---
 
-### What are the Differences Between Intermediate and Terminal Operations
 
-| Feature               | Intermediate Operations        | Terminal Operations          |
-|-----------------------|--------------------------------|------------------------------|
-| **Definition**       | Transforms a stream into another stream | Produces a result or side-effect and consumes the stream |
-| **Execution**       | **Lazy** (Executed only when a terminal operation is called) | **Eager** (Triggers stream processing immediately) |
-| **Return Type**      | Returns another `Stream<T>` (supports chaining) | Returns a non-stream value (like `List<T>`, `int`, `boolean`, etc.) |
-| **Effect on Stream** | Does not terminate the stream | Terminates the stream (cannot reuse it) |
-| **Examples**        | `filter()`, `map()`, `sorted()`, `distinct()`, `limit()`, `skip()` | `forEach()`, `collect()`, `reduce()`, `count()`, `min()`, `max()`, `anyMatch()` |
-| **Execution Order** | Deferred until a terminal operation is encountered | Executes immediately when invoked |
-| **Usage**           | Used for data transformation | Used to get final results from the stream |
-
-### Example
-```java
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
-public class StreamExample {
-    public static void main(String[] args) {
-        List<Integer> numbers = Arrays.asList(2, 3, 4, 5, 6, 7);
-
-        // Intermediate Operations (lazy)
-        List<Integer> squaredNumbers = numbers.stream()
-                .filter(n -> n % 2 == 0)  // Intermediate
-                .map(n -> n * n)          // Intermediate
-                .collect(Collectors.toList()); // Terminal
-
-        System.out.println(squaredNumbers); // Output: [4, 16, 36]
-    }
-}
-```
 
 
