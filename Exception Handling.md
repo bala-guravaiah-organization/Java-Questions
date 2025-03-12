@@ -1,4 +1,4 @@
-# Exception Handling in Java
+## Exception Handling in Java
 
 ## Question 1: What is an Exception and Exception Handling?
 
