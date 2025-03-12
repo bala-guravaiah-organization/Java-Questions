@@ -1,5 +1,6 @@
 
 ### Filter Vegetarian Dishes from the given List ?
+
 **Dish.java**
 ```java
 import java.util.*;
@@ -32,6 +33,7 @@ class Dish {
 
 ```
 **MenuService.java**
+
 ```java
 class MenuService {
     public static List<Dish> getVegetarianDishes(List<Dish> menu) {
@@ -61,7 +63,7 @@ public class VegetarianDishFilter {
 }
 ```
 
-#### Example: Filter Unique Even Numbers from the List
+#### Filter Unique Even Numbers from the List ?
 ```java
 List<Integer> numbers = Arrays.asList(1, 2, 1, 3, 3, 2, 4);
 numbers.stream()
@@ -91,7 +93,7 @@ System.out.println(dishes);
 [french fries]
 ```
 
-### How can you filter and limit the number of meat dishes in a menu using Java Streams?
+### filter and limit the number of meat dishes in a menu using Java Streams?
 
 ```java
 List<Dish> dishes = 
@@ -149,7 +151,7 @@ Mapping: Steak
 ["Pasta", "Chicken Curry", "Steak"]
 ```
 
-### How can you count distinct dishes with more than 300 calories while limiting the result to 3 in Java Streams?
+### How can you count distinct dishes with more than 300 calories while limiting the result to 3?
 
 ```java
 long count = menu.stream()
