@@ -170,7 +170,7 @@ s.forEach(System.out::println); // Throws IllegalStateException
 
 ---
 
-### what is External vs. Internal Iteration in Java
+### what is External vs. Internal Iteration in Java ?
 
 ### **1. External Iteration (Java 7 and Earlier)**
 
