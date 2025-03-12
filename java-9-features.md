@@ -1,6 +1,5 @@
 ## Java 9 Streams: Slicing a Stream
 
-### Introduction
 Java 9 introduced two new methods, `takeWhile` and `dropWhile`, to efficiently slice streams based on a predicate. These methods provide an optimized way to select or ignore elements without processing the entire stream, which is useful for handling large or infinite streams.
 
 ---
