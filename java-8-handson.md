@@ -470,4 +470,195 @@ public class StreamExample {
     }
 }
 ```
+---
+### Write a Java 8 method that takes a list of integers and returns a new list containing only the even numbers. 
+
+```java
+List<Integer> numbers1 = Arrays.asList(1, 2, 3, 4)
+				.stream()
+				.filter(i ->i%2==0)
+				.collect(Collectors.toList());
+		System.out.println(numbers1);
+```
+```
+output : [2, 4]
+```
+### Write a Java 8 method that takes a list of strings and a character, and returns a new list containing only the strings that start with that character. 
+
+### Different Approaches
+
+### 1️⃣ Best Approach: Using `mapToInt().sum()` ✅
+```java
+List<Integer> words = List.of(1, 2, 3, 4, 5);
+int sum = words.stream()
+    .filter(num -> num % 2 == 0)
+    .mapToInt(num -> num)
+    .sum();
+System.out.println(sum);
+```
+#### ✅ Why Best?
+- **Fastest**: Uses **primitive int stream**, avoiding unnecessary boxing/unboxing.
+- **Short & Readable**: Computes sum in a single pass.
+- **No Optional Handling Needed**: Directly returns `int`.
+
+---
+
+### 2️⃣ Alternative Approach: Using `reduce()` with `Optional<Integer>`
+```java
+List<Integer> words = List.of(1, 2, 3, 4, 5);
+Optional<Integer> optionalInteger = words.stream()
+    .filter(num -> num % 2 == 0)
+    .reduce((num1, num2) -> num1 + num2);
+System.out.println(optionalInteger.orElse(0));
+```
+#### 🟡 Why Second?
+- **Less Efficient**: Uses **auto-boxing**, leading to performance overhead.
+- **Requires Optional Handling**: Needs `orElse(0)` to handle empty lists safely.
+- **Useful for Custom Reduction Logic**: Best when more than just sum is needed.
+
+---
+
+### 3️⃣ Worst Approach: Using `Collectors.summarizingInt()` ❌
+```java
+List<Integer> words = List.of(1, 2, 3, 4, 5);
+IntSummaryStatistics intSummaryStatistics = words.stream()
+    .filter(num -> num % 2 == 0)
+    .collect(Collectors.summarizingInt(i -> i));
+System.out.println(intSummaryStatistics.getSum());
+```
+#### ❌ Why Worst?
+- **Unnecessary Computation Overhead**: Calculates min, max, count, and average when only sum is needed.
+- **More Memory Usage**: Stores extra statistics that are not needed.
+- **Less Readable**: Adds unnecessary complexity.
+
+---
+**output :** 6 
+---
+### Final Ranking
+| Approach | Performance | Readability | Suitability |
+|----------|------------|-------------|-------------|
+| `mapToInt().sum()` ✅ | **Best** (Primitive Stream) | **Best** (Simple & Direct) | **Best for Summing** |
+| `reduce()` 🟡 | **Slower** (Auto-boxing overhead) | **Okay** (Needs Optional Handling) | **Better for Custom Reduction** |
+| `Collectors.summarizingInt()` ❌ | **Worst** (Unnecessary computations) | **Worst** (Extra memory use) | **Bad Choice for Just Sum** |
+
+---
+### Write a Java 8 method that takes a list of strings and returns the length of the longest string in the list.
+
+```java
+List<String> words = List.of("apple", "banana", "cherry", "blueberry");
+		OptionalInt optionalInt = words.stream()
+		.mapToInt(string -> string.length())
+		.max();
+		System.out.println(optionalInt.getAsInt());
+ ```
+ ***output***:9
+
+ ### Write a Java 8 method that takes a list of integers and returns a new list containing only the odd numbers, sorted in ascending order.
+
+ ```java    
+ List<Integer> numbers = List.of(5, 2, 8, 3, 1, 7, 4);
+		List<Integer> oddNumberList = 
+		 numbers.stream()
+				.filter(num -> num%2!=0)
+				.sorted()
+				.collect(Collectors.toList());
+		System.out.println(oddNumberList);  
+```
+```
+output : [1, 3, 5, 7]
+```
+
+### Write a Java 8 method that takes a list of strings and returns a new list containing the first letter of each string, in uppercase.
+
+```java
+List<String> words = List.of("apple", "banana", "cherry", "blueberry");
+		List<String> list = words.stream()
+		.map(string -> string.substring(0,1).toUpperCase() + string.substring(1))
+		.collect(Collectors.toList());
+		System.out.println(list);
+```
+```
+output : [Apple, Banana, Cherry, Blueberry]
+```
+### Write a Java 8 method that takes a list of integers and returns the product of all the numbers in the list.
+
+```java
+List<Integer> numbers = List.of(5, 2, 8, 3, 1, 7, 4);
+		Integer integer = 
+				numbers.stream()
+				.mapToInt(num -> num)
+				.reduce(1,(num1,num2) -> num1*num2);
+		System.out.println(integer);
+ ```
+ ```
+ output: 6720
+ ```
+ ### Write a Java 8 method that takes a list of strings and returns a new list containing only the strings that have a length of three.        
+ ```java
+ List<String> words = List.of("apple", "banana", "cherry", "blueberry", "abc");
+		List<String> list = words.stream()
+			 .filter(string -> string.length() == 3)
+			 .collect(Collectors.toList());
+		System.out.println(list);
+ ```
+ ```
+ output : [abc]
+ ```
+  ### Write a Java 8 method that takes a list of strings and returns a new list containing only the strings that contain the letter 'a' in them. 
+
+  ```java
+  List<String> words = List.of("apple", "banana", "cherry", "blueberry", "abc");
+		List<String> list = words.stream()
+			.filter(string -> string.contains("a"))
+			.collect(Collectors.toList());
+		System.out.println(list);
+ ```
+ ```
+ output: [apple, banana, abc]
+ ```
+### Write a Java 8 lambda expression to sort a list of integers in descending order.
+```java
+List<Integer> list = Arrays.asList(1,2,3,4,5,6,7,4,66,0,5)
+		.stream()
+		.sorted((num1,num2)-> num2-num1)
+		.collect(Collectors.toList());
+		System.out.println(list);
+ ```
+ ```
+ output : [66, 7, 6, 5, 5, 4, 4, 3, 2, 1, 0]
+ ```
+### Write a Java 8 method that takes a list of strings and returns a new list containing the strings sorted in reverse alphabetical order.   
+```java
+ List<String> words = List.of("apple", "banana", "cherry", "blueberry", "abc");
+		 List<String> list = words.stream()
+		 .sorted(Comparator.reverseOrder())
+		 .collect(Collectors.toList());
+		 System.out.println(list);	 
+```
+```
+output : [cherry, blueberry, banana, apple, abc]
+```              
+### Write a Java 8 method that takes a list of integers and returns the sum of the square of each number in the list. 
+
+```java
+List<Integer> numbers = List.of(5, 2, 8, 3, 1, 7, 4);
+		Integer integer = numbers.stream()
+				.mapToInt(num -> num*num)
+				.sum();
+		System.out.println(integer);
+```
+```
+output :  168
+```        
+### Write a Java 8 method that takes a list of strings and returns a new list containing only the strings that have more than five characters. 
+```java
+List<String> words = List.of("apple", "banana", "cherry", "blueberry", "abc");
+		List<String> list = words.stream()
+		.filter(string -> string.length()>5)
+		.collect(Collectors.toList());
+		System.out.println(list);
+ ```
+ ```
+ output : [banana, cherry, blueberry]       
+```
 
