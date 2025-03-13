@@ -661,4 +661,175 @@ List<String> words = List.of("apple", "banana", "cherry", "blueberry", "abc");
  ```
  output : [banana, cherry, blueberry]       
 ```
+### Write a Java 8 method that takes a list of strings and returns a new list containing the strings that have the first letter capitalized and the rest of the letters in lowercase.
+```java
+List<String> words = List.of("aPPle", "banAna", "cHerry", "bluEberry", "abC");
+		List<String> list = words.stream()
+				.map(string -> string.substring(0, 1).toUpperCase() + string.substring(1).toLowerCase())
+				.collect(Collectors.toList());
+		System.out.println(list);
+```
+```
+output : [Apple, Banana, Cherry, Blueberry, Abc]
+```
+### Write a Java 8 method that takes a list of integers and returns the average of all the odd numbers in the list.
+```java
+List<Integer> numbers = List.of(5, 2, 8, 3, 1, 7, 4);
+		OptionalDouble average = numbers.stream()
+			   .filter(num -> num%2!=0)
+			   .mapToInt(num -> num)
+			   .average();
+		System.out.println(average.getAsDouble());
+ ```
+ ```
+ output : 4.0
+```       
+### Write a Java 8 method that takes a list of strings and returns a new list containing the strings that have the letter 'e' as the second letter. 
+
+```java
+List<String> words = List.of("aPPle", "banAna", "cHerry", "bluEberry", "abC", "bed");
+		List<String> list = words.stream().filter(string -> string.substring(1, 2).contains("e"))
+				.collect(Collectors.toList());
+		System.out.println(list);
+
+```
+```
+output : [bed]
+```   
+### Write a Java 8 method that takes a list of strings and returns the number of strings that contain the letter 'o' in them.
+```java
+List<String> words = List.of("aPPle", "banAna", "cHerry", "bluEberry", "abC", "bed");
+		long count = words.stream().filter(string -> string.contains("o"))
+				.count();
+		System.out.println(count); 
+```
+```
+output : 0
+```
+### Write a Java 8 lambda expression to sort a list of doubles in ascending order.
+```java
+List<Double> numbers = List.of(3.5, 1.2, 4.8, 2.9);
+		List<Double> list = numbers.stream()
+			   .sorted((d1,d2) -> Double.compare(d1, d2))
+			   .collect(Collectors.toList());
+		System.out.println(list);
+```
+```
+Output : [1.2, 2.9, 3.5, 4.8]
+```   
+### Write a Java 8 method that takes a list of strings and returns a new list containing only the strings that are not longer than four characters.  
+```java
+List<String> words = List.of("aPPle", "banAna", "cHerry", "bluEberry", "abC", "bed");
+		List<String> list = words.stream()
+				.filter(string -> string.length() <= 3)
+				.collect(Collectors.toList());
+		System.out.println(list);
+```
+```
+output : [abC, bed]
+```        
+### Write a Java 8 method that takes a list of integers and returns the product of all the odd numbers in the list. 
+```java
+List<Integer> numbers = List.of(5, 2, 8, 3, 1, 7, 4);
+		Integer integer = numbers.stream()
+		.filter(num -> num%2!=0)
+		.reduce(1,(num1,num2) -> num1*num2);
+		System.out.println(integer);
+```
+```
+output : 105
+```
+ ### Write a Java 8 method that takes a list of strings and returns the total number of characters in all the strings. 
+ ```java
+ List<String> words = List.of("apple", "banana", "cherry", "blueberry", "abc", "bed");
+		List<Integer> list = words.stream()
+				.map(string -> string.length())
+				.collect(Collectors.toList());
+		System.out.println(list);
+```
+```
+output : [5, 6, 6, 9, 3, 3]
+```
+### Write a Java 8 method that takes a list of strings and returns a new list containing only the strings that start with a vowel. 
+```java
+String vowels = "AEIOUaeiou";
+		List<String> words = List.of("apple", "banana", "cherry", "blueberry", "abc", "bed");
+		List<String> list2 = words.stream()
+		.filter(string -> vowels.contains(string.substring(0,1)))
+		.collect(Collectors.toList());
+		System.out.println(list2);        
+```
+```
+output : [apple, abc]
+```
+### Write a Java 8 method that takes a list of strings and returns a new list containing only the strings that end with the letter 's'. 
+
+```java
+List<String> words = List.of("apple", "banana", "cherry", "blueberry", "singles");
+		List<String> list = words.stream()
+		.filter(string -> string.endsWith("s"))
+		.collect(Collectors.toList());
+		System.out.println(list);
+```
+```
+output : [singles]
+```
+ ### Write a Java 8 lambda expression to sort a list of Doubles in descending order.
+ ```java
+ List<Double> numbers = List.of(3.5, 1.2, 4.8, 2.9);
+		List<Double> list = numbers.stream()
+		       .sorted((num1,num2) -> Double.compare(num2,num1))
+		       .collect(Collectors.toList());
+		System.out.println(list);
+```
+```
+output : [4.8, 3.5, 2.9, 1.2]
+```
+### Write a Java 8 method that takes a list of strings and returns a new list containing the strings that have at least one digit in them.
+
+```java
+List<String> words = List.of("apple", "hello123", "world", "java8", "test1ng", "code");
+
+words.stream()
+     .filter(s -> s.chars().anyMatch(Character::isDigit))
+     .collect(Collectors.toList());
+
+```
+---
+
+### **Explanation**
+
+### **1️⃣ `s.chars()` - Convert String to IntStream**
+Each character in the string is converted to its **ASCII (Unicode) value**:
+```java
+"java8".chars() → Stream of [106, 97, 118, 97, 56]
+```
+- `'j'` → 106
+- `'a'` → 97
+- `'v'` → 118
+- `'a'` → 97
+- `'8'` → 56
+
+### **2️⃣ `.anyMatch(Character::isDigit)` - Check for Digits**
+- **`Character.isDigit(c)`** checks if a character is a digit (`0-9`).
+- **`.anyMatch()`** stops processing once it finds the first digit (short-circuiting).
+
+#### **Example Execution Table**
+| String     | `s.chars()` Output | Any Digit? | Keep? |
+|------------|---------------------------|------------|------|
+| `"apple"`  | `[97, 112, 112, 108, 101]` | ❌ No digits | ❌ Remove |
+| `"hello123"` | `[104, 101, 108, 108, 111, 49, 50, 51]` | ✅ Digits found | ✅ Keep |
+| `"world"`  | `[119, 111, 114, 108, 100]` | ❌ No digits | ❌ Remove |
+| `"java8"`  | `[106, 97, 118, 97, 56]` | ✅ Digits found | ✅ Keep |
+| `"test1ng"` | `[116, 101, 115, 116, 49, 110, 103]` | ✅ Digits found | ✅ Keep |
+| `"code"`  | `[99, 111, 100, 101]` | ❌ No digits | ❌ Remove |
+
+✅ **Final Output:**
+```java
+[hello123, java8, test1ng]
+```
+---
+
+
+   
 
