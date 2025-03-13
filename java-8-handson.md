@@ -492,9 +492,9 @@ System.out.println(intSummaryStatistics.getSum());
 - **Less Readable**: Adds unnecessary complexity.
 
 ---
-**output :** 6 
+#### **output :** 6 
 ---
-### Final Ranking
+#### Final Ranking
 | Approach | Performance | Readability | Suitability |
 |----------|------------|-------------|-------------|
 | `mapToInt().sum()` ✅ | **Best** (Primitive Stream) | **Best** (Simple & Direct) | **Best for Summing** |
