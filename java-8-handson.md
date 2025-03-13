@@ -1,5 +1,5 @@
 
-### Filter Vegetarian Dishes from the given List ?
+#### Filter Vegetarian Dishes from the given List ?
 
 **Dish.java**
 ```java
@@ -77,23 +77,7 @@ numbers.stream()
 4
 ```
 
-### Get the first three elements whose `calories > 300`
-
-```java
-List<Dish> dishes = menu.stream()
-        .filter(d -> d.getCalories() > 300)
-        .skip(2)
-        .collect(Collectors.toList());
-
-System.out.println(dishes);
-```
-
-#### Output:
-```
-[french fries]
-```
-
-### filter and limit the number of meat dishes in a menu using Java Streams?
+#### filter and limit the number of meat dishes in a menu using Java Streams?
 
 ```java
 List<Dish> dishes = 
@@ -103,7 +87,7 @@ List<Dish> dishes =
         .collect(Collectors.toList());
 ```
 
-### How can you use Java Streams to filter even numbers and square them?
+#### How can you use Java Streams to filter even numbers and square them?
 ```java
 import java.util.Arrays;
 import java.util.List;
@@ -123,35 +107,7 @@ public class StreamExample {
     }
 }
 ```
-### How can you filter dishes with more than 300 calories?
-```java
-List<String> names = menu.stream()
-        .filter(dish -> {
-            System.out.println("Filtering: " + dish.getName());
-            return dish.getCalories() > 300;
-        })
-        .map(dish -> {
-            System.out.println("Mapping: " + dish.getName());
-            return dish.getName();
-        })
-        .limit(3)
-        .collect(Collectors.toList());
-```
-**console output:**
-```
-Filtering: Pasta
-Mapping: Pasta
-Filtering: Chicken Curry
-Mapping: Chicken Curry
-Filtering: Steak
-Mapping: Steak
-```
-**Final output**
-```
-["Pasta", "Chicken Curry", "Steak"]
-```
-
-### How can you count distinct dishes with more than 300 calories while limiting the result to 3?
+#### How can you count distinct dishes with more than 300 calories while limiting the result to 3?
 
 ```java
 long count = menu.stream()
@@ -161,7 +117,7 @@ long count = menu.stream()
                  .count(); // Counts the remaining elements
 ```
 
-### process a list of words, split them into characters, flatten them into a single stream, remove duplicates, and collect the unique characters into a list.
+#### process a list of words, split them into characters, flatten them into a single stream, remove duplicates, and collect the unique characters into a list.
 
 ```java
 public class MergeArraysDemo {
@@ -185,7 +141,7 @@ public class MergeArraysDemo {
 }
 ```
 
-### Step-by-Step Explanation
+#### Step-by-Step Explanation
 1. **Splitting Words into Character Arrays (`map(word -> word.split(""))`)**
    - Each word is split into an array of characters.
    - Example: 
@@ -213,12 +169,12 @@ public class MergeArraysDemo {
 4. **Collecting into a List (`collect(Collectors.toList())`)**
    - Stores the final unique characters into a `List<String>`.
 
-### Expected Output
+#### Expected Output
 ```
 [a, p, l, e, b, n]
 ```
 
-### Given a list of numbers, how would you return a list of the square of each number? 
+#### Given a list of numbers, how would you return a list of the square of each number? 
 **For example, given [1, 2, 3, 4, 5] you should return [1, 4, 9, 16, 25].**
 
 ```java
@@ -241,7 +197,7 @@ public class MergeArraysDemo {
 }
 ```
 
-### Explanation
+#### Explanation
 1. **Create a list of integers**: `Arrays.asList(1, 4, 5, 9)`
 2. **Convert to a stream**: `.stream()` allows for stream processing.
 3. **Apply transformation (`map`)**: `.map(i -> i * i)` squares each element.
@@ -252,7 +208,7 @@ public class MergeArraysDemo {
 ```
 [1, 16, 25, 81]
 ```
-### Given two lists of numbers, how would you return all pairs of numbers? 
+#### Given two lists of numbers, how would you return all pairs of numbers? 
 **For example, given a list [1, 2, 3] and a list [3, 4] you should return [(1, 3), (1, 4), (2, 3), (2, 4),(3, 3), (3, 4)].**
 
 
@@ -282,9 +238,9 @@ public class MergeArraysDemo {
 }
 ```
 
-### Step-by-Step Execution
+#### Step-by-Step Execution
 
-### **Step 1: Convert `numbers1` to a Stream**
+#### **Step 1: Convert `numbers1` to a Stream**
 ```java
 numbers1.stream()
 ```
@@ -293,7 +249,7 @@ numbers1.stream()
   Stream<Integer> -> {1, 2, 3}
   ```
 
-### **Step 2: Process Each Element `i` in `numbers1`**
+#### **Step 2: Process Each Element `i` in `numbers1`**
 ```java
 flatMap(i -> numbers2.stream()
 ```
@@ -303,7 +259,7 @@ flatMap(i -> numbers2.stream()
   ```
 - This step repeats for each `i` in `numbers1`.
 
-### **Step 3: Map Each Element `j` in `numbers2` to a Pair**
+#### **Step 3: Map Each Element `j` in `numbers2` to a Pair**
 ```java
 .map(j -> new int[]{i, j})
 ```
@@ -318,7 +274,7 @@ For each `j` from `numbers2`, create an `int[]` containing `(i, j)`:
 | 3               | 3                | [3,3]                    |
 | 3               | 4                | [3,4]                    |
 
-### **Step 4: Flattening Streams Using `flatMap()`**
+#### **Step 4: Flattening Streams Using `flatMap()`**
 Before `flatMap()`, we have multiple individual streams of `int[]` pairs:
 ```
 Stream<int[]> from i=1 → [1,3], [1,4]
@@ -330,13 +286,13 @@ After `flatMap()`, these streams are merged into a **single** stream:
 Single Stream<int[]> → [[1,3], [1,4], [2,3], [2,4], [3,3], [3,4]]
 ```
 
-### **Step 5: Collecting the Results**
+#### **Step 5: Collecting the Results**
 ```java
 .collect(Collectors.toList());
 ```
 - Converts the **flattened stream** into a `List<int[]>`.
 
-### **Step 6: Printing the Output**
+#### **Step 6: Printing the Output**
 ```java
 for (int[] ks : pairs) {
     System.out.println(Arrays.toString(ks));
@@ -344,7 +300,7 @@ for (int[] ks : pairs) {
 ```
 - Prints the pairs in a readable format.
 
-### Output
+#### Output
 ```
 [1, 3]
 [1, 4]
@@ -353,7 +309,7 @@ for (int[] ks : pairs) {
 [3, 3]
 [3, 4]
 ``` 
-### How would you extend the previous example to return only pairs whose sum is divisible by 3?
+#### How would you extend the previous example to return only pairs whose sum is divisible by 3?
 
 ```java
 import java.util.Arrays;
@@ -381,9 +337,9 @@ public class MergeArraysDemo {
 }
 ```
 
-### Step-by-Step Execution
+#### Step-by-Step Execution
 
-### **Step 1: Convert `numbers1` to a Stream**
+#### **Step 1: Convert `numbers1` to a Stream**
 ```java
 numbers1.stream()
 ```
@@ -392,7 +348,7 @@ numbers1.stream()
   Stream<Integer> -> {1, 2, 3}
   ```
 
-### **Step 2: Process Each Element `i` in `numbers1`**
+#### **Step 2: Process Each Element `i` in `numbers1`**
 ```java
 flatMap(i -> numbers2.stream()
 ```
@@ -402,7 +358,7 @@ flatMap(i -> numbers2.stream()
   ```
 - This step repeats for each `i` in `numbers1`.
 
-### **Step 3: Apply Filtering Condition**
+#### **Step 3: Apply Filtering Condition**
 ```java
 .filter(j -> (i + j) % 3 == 0)
 ```
@@ -417,7 +373,7 @@ flatMap(i -> numbers2.stream()
 | 3               | 3                | 6           | ✅ (6 % 3 == 0)              | [3,3]                    |
 | 3               | 4                | 7           | ❌ (7 % 3 != 0)              | Not included            |
 
-### **Step 4: Flattening Streams Using `flatMap()`**
+#### **Step 4: Flattening Streams Using `flatMap()`**
 Before `flatMap()`, we have multiple individual streams of `int[]` pairs:
 ```
 Stream<int[]> from i=1 → []
@@ -429,13 +385,13 @@ After `flatMap()`, these streams are merged into a **single** stream:
 Single Stream<int[]> → [[2,4], [3,3]]
 ```
 
-### **Step 5: Collecting the Results**
+#### **Step 5: Collecting the Results**
 ```java
 .collect(Collectors.toList());
 ```
 - Converts the **flattened stream** into a `List<int[]>`.
 
-### **Step 6: Printing the Output**
+#### **Step 6: Printing the Output**
 ```java
 for (int[] ks : list) {
     System.out.println(Arrays.toString(ks));
@@ -443,7 +399,7 @@ for (int[] ks : list) {
 ```
 - Prints the filtered pairs in a readable format.
 
-### Output
+#### Output
 ```
 [2, 4]
 [3, 3]
@@ -471,7 +427,7 @@ public class StreamExample {
 }
 ```
 ---
-### Write a Java 8 method that takes a list of integers and returns a new list containing only the even numbers. 
+#### Write a Java 8 method that takes a list of integers and returns a new list containing only the even numbers. 
 
 ```java
 List<Integer> numbers1 = Arrays.asList(1, 2, 3, 4)
@@ -483,11 +439,11 @@ List<Integer> numbers1 = Arrays.asList(1, 2, 3, 4)
 ```
 output : [2, 4]
 ```
-### Write a Java 8 method that takes a list of strings and a character, and returns a new list containing only the strings that start with that character. 
+#### Write a Java 8 method that takes a list of strings and a character, and returns a new list containing only the strings that start with that character. 
 
-### Different Approaches
+#### Different Approaches
 
-### 1️⃣ Best Approach: Using `mapToInt().sum()` ✅
+#### 1️⃣ Best Approach: Using `mapToInt().sum()` ✅
 ```java
 List<Integer> words = List.of(1, 2, 3, 4, 5);
 int sum = words.stream()
@@ -503,7 +459,7 @@ System.out.println(sum);
 
 ---
 
-### 2️⃣ Alternative Approach: Using `reduce()` with `Optional<Integer>`
+#### 2️⃣ Alternative Approach: Using `reduce()` with `Optional<Integer>`
 ```java
 List<Integer> words = List.of(1, 2, 3, 4, 5);
 Optional<Integer> optionalInteger = words.stream()
@@ -542,7 +498,7 @@ System.out.println(intSummaryStatistics.getSum());
 | `Collectors.summarizingInt()` ❌ | **Worst** (Unnecessary computations) | **Worst** (Extra memory use) | **Bad Choice for Just Sum** |
 
 ---
-### Write a Java 8 method that takes a list of strings and returns the length of the longest string in the list.
+#### Write a Java 8 method that takes a list of strings and returns the length of the longest string in the list.
 
 ```java
 List<String> words = List.of("apple", "banana", "cherry", "blueberry");
@@ -551,9 +507,11 @@ List<String> words = List.of("apple", "banana", "cherry", "blueberry");
 		.max();
 		System.out.println(optionalInt.getAsInt());
  ```
- ***output***:9
+ ```
+ output:9
+ ```
 
- ### Write a Java 8 method that takes a list of integers and returns a new list containing only the odd numbers, sorted in ascending order.
+ #### Write a Java 8 method that takes a list of integers and returns a new list containing only the odd numbers, sorted in ascending order.
 
  ```java    
  List<Integer> numbers = List.of(5, 2, 8, 3, 1, 7, 4);
@@ -568,7 +526,7 @@ List<String> words = List.of("apple", "banana", "cherry", "blueberry");
 output : [1, 3, 5, 7]
 ```
 
-### Write a Java 8 method that takes a list of strings and returns a new list containing the first letter of each string, in uppercase.
+#### Write a Java 8 method that takes a list of strings and returns a new list containing the first letter of each string, in uppercase.
 
 ```java
 List<String> words = List.of("apple", "banana", "cherry", "blueberry");
@@ -580,7 +538,7 @@ List<String> words = List.of("apple", "banana", "cherry", "blueberry");
 ```
 output : [Apple, Banana, Cherry, Blueberry]
 ```
-### Write a Java 8 method that takes a list of integers and returns the product of all the numbers in the list.
+#### Write a Java 8 method that takes a list of integers and returns the product of all the numbers in the list.
 
 ```java
 List<Integer> numbers = List.of(5, 2, 8, 3, 1, 7, 4);
@@ -593,7 +551,7 @@ List<Integer> numbers = List.of(5, 2, 8, 3, 1, 7, 4);
  ```
  output: 6720
  ```
- ### Write a Java 8 method that takes a list of strings and returns a new list containing only the strings that have a length of three.        
+ #### Write a Java 8 method that takes a list of strings and returns a new list containing only the strings that have a length of three.        
  ```java
  List<String> words = List.of("apple", "banana", "cherry", "blueberry", "abc");
 		List<String> list = words.stream()
@@ -604,7 +562,7 @@ List<Integer> numbers = List.of(5, 2, 8, 3, 1, 7, 4);
  ```
  output : [abc]
  ```
-  ### Write a Java 8 method that takes a list of strings and returns a new list containing only the strings that contain the letter 'a' in them. 
+  #### Write a Java 8 method that takes a list of strings and returns a new list containing only the strings that contain the letter 'a' in them. 
 
   ```java
   List<String> words = List.of("apple", "banana", "cherry", "blueberry", "abc");
@@ -616,7 +574,7 @@ List<Integer> numbers = List.of(5, 2, 8, 3, 1, 7, 4);
  ```
  output: [apple, banana, abc]
  ```
-### Write a Java 8 lambda expression to sort a list of integers in descending order.
+#### Write a Java 8 lambda expression to sort a list of integers in descending order.
 ```java
 List<Integer> list = Arrays.asList(1,2,3,4,5,6,7,4,66,0,5)
 		.stream()
@@ -627,7 +585,7 @@ List<Integer> list = Arrays.asList(1,2,3,4,5,6,7,4,66,0,5)
  ```
  output : [66, 7, 6, 5, 5, 4, 4, 3, 2, 1, 0]
  ```
-### Write a Java 8 method that takes a list of strings and returns a new list containing the strings sorted in reverse alphabetical order.   
+#### Write a Java 8 method that takes a list of strings and returns a new list containing the strings sorted in reverse alphabetical order.   
 ```java
  List<String> words = List.of("apple", "banana", "cherry", "blueberry", "abc");
 		 List<String> list = words.stream()
@@ -638,7 +596,7 @@ List<Integer> list = Arrays.asList(1,2,3,4,5,6,7,4,66,0,5)
 ```
 output : [cherry, blueberry, banana, apple, abc]
 ```              
-### Write a Java 8 method that takes a list of integers and returns the sum of the square of each number in the list. 
+#### Write a Java 8 method that takes a list of integers and returns the sum of the square of each number in the list. 
 
 ```java
 List<Integer> numbers = List.of(5, 2, 8, 3, 1, 7, 4);
@@ -650,7 +608,7 @@ List<Integer> numbers = List.of(5, 2, 8, 3, 1, 7, 4);
 ```
 output :  168
 ```        
-### Write a Java 8 method that takes a list of strings and returns a new list containing only the strings that have more than five characters. 
+#### Write a Java 8 method that takes a list of strings and returns a new list containing only the strings that have more than five characters. 
 ```java
 List<String> words = List.of("apple", "banana", "cherry", "blueberry", "abc");
 		List<String> list = words.stream()
@@ -661,7 +619,7 @@ List<String> words = List.of("apple", "banana", "cherry", "blueberry", "abc");
  ```
  output : [banana, cherry, blueberry]       
 ```
-### Write a Java 8 method that takes a list of strings and returns a new list containing the strings that have the first letter capitalized and the rest of the letters in lowercase.
+#### Write a Java 8 method that takes a list of strings and returns a new list containing the strings that have the first letter capitalized and the rest of the letters in lowercase.
 ```java
 List<String> words = List.of("aPPle", "banAna", "cHerry", "bluEberry", "abC");
 		List<String> list = words.stream()
@@ -672,7 +630,7 @@ List<String> words = List.of("aPPle", "banAna", "cHerry", "bluEberry", "abC");
 ```
 output : [Apple, Banana, Cherry, Blueberry, Abc]
 ```
-### Write a Java 8 method that takes a list of integers and returns the average of all the odd numbers in the list.
+#### Write a Java 8 method that takes a list of integers and returns the average of all the odd numbers in the list.
 ```java
 List<Integer> numbers = List.of(5, 2, 8, 3, 1, 7, 4);
 		OptionalDouble average = numbers.stream()
@@ -684,7 +642,7 @@ List<Integer> numbers = List.of(5, 2, 8, 3, 1, 7, 4);
  ```
  output : 4.0
 ```       
-### Write a Java 8 method that takes a list of strings and returns a new list containing the strings that have the letter 'e' as the second letter. 
+#### Write a Java 8 method that takes a list of strings and returns a new list containing the strings that have the letter 'e' as the second letter. 
 
 ```java
 List<String> words = List.of("aPPle", "banAna", "cHerry", "bluEberry", "abC", "bed");
@@ -696,7 +654,7 @@ List<String> words = List.of("aPPle", "banAna", "cHerry", "bluEberry", "abC", "b
 ```
 output : [bed]
 ```   
-### Write a Java 8 method that takes a list of strings and returns the number of strings that contain the letter 'o' in them.
+#### Write a Java 8 method that takes a list of strings and returns the number of strings that contain the letter 'o' in them.
 ```java
 List<String> words = List.of("aPPle", "banAna", "cHerry", "bluEberry", "abC", "bed");
 		long count = words.stream().filter(string -> string.contains("o"))
@@ -706,7 +664,7 @@ List<String> words = List.of("aPPle", "banAna", "cHerry", "bluEberry", "abC", "b
 ```
 output : 0
 ```
-### Write a Java 8 lambda expression to sort a list of doubles in ascending order.
+#### Write a Java 8 lambda expression to sort a list of doubles in ascending order.
 ```java
 List<Double> numbers = List.of(3.5, 1.2, 4.8, 2.9);
 		List<Double> list = numbers.stream()
@@ -717,7 +675,7 @@ List<Double> numbers = List.of(3.5, 1.2, 4.8, 2.9);
 ```
 Output : [1.2, 2.9, 3.5, 4.8]
 ```   
-### Write a Java 8 method that takes a list of strings and returns a new list containing only the strings that are not longer than four characters.  
+#### Write a Java 8 method that takes a list of strings and returns a new list containing only the strings that are not longer than four characters.  
 ```java
 List<String> words = List.of("aPPle", "banAna", "cHerry", "bluEberry", "abC", "bed");
 		List<String> list = words.stream()
@@ -728,7 +686,7 @@ List<String> words = List.of("aPPle", "banAna", "cHerry", "bluEberry", "abC", "b
 ```
 output : [abC, bed]
 ```        
-### Write a Java 8 method that takes a list of integers and returns the product of all the odd numbers in the list. 
+#### Write a Java 8 method that takes a list of integers and returns the product of all the odd numbers in the list. 
 ```java
 List<Integer> numbers = List.of(5, 2, 8, 3, 1, 7, 4);
 		Integer integer = numbers.stream()
@@ -739,7 +697,7 @@ List<Integer> numbers = List.of(5, 2, 8, 3, 1, 7, 4);
 ```
 output : 105
 ```
- ### Write a Java 8 method that takes a list of strings and returns the total number of characters in all the strings. 
+ #### Write a Java 8 method that takes a list of strings and returns the total number of characters in all the strings. 
  ```java
  List<String> words = List.of("apple", "banana", "cherry", "blueberry", "abc", "bed");
 		List<Integer> list = words.stream()
@@ -750,7 +708,7 @@ output : 105
 ```
 output : [5, 6, 6, 9, 3, 3]
 ```
-### Write a Java 8 method that takes a list of strings and returns a new list containing only the strings that start with a vowel. 
+#### Write a Java 8 method that takes a list of strings and returns a new list containing only the strings that start with a vowel. 
 ```java
 String vowels = "AEIOUaeiou";
 		List<String> words = List.of("apple", "banana", "cherry", "blueberry", "abc", "bed");
@@ -762,7 +720,7 @@ String vowels = "AEIOUaeiou";
 ```
 output : [apple, abc]
 ```
-### Write a Java 8 method that takes a list of strings and returns a new list containing only the strings that end with the letter 's'. 
+#### Write a Java 8 method that takes a list of strings and returns a new list containing only the strings that end with the letter 's'. 
 
 ```java
 List<String> words = List.of("apple", "banana", "cherry", "blueberry", "singles");
@@ -774,7 +732,7 @@ List<String> words = List.of("apple", "banana", "cherry", "blueberry", "singles"
 ```
 output : [singles]
 ```
- ### Write a Java 8 lambda expression to sort a list of Doubles in descending order.
+ #### Write a Java 8 lambda expression to sort a list of Doubles in descending order.
  ```java
  List<Double> numbers = List.of(3.5, 1.2, 4.8, 2.9);
 		List<Double> list = numbers.stream()
@@ -785,7 +743,7 @@ output : [singles]
 ```
 output : [4.8, 3.5, 2.9, 1.2]
 ```
-### Write a Java 8 method that takes a list of strings and returns a new list containing the strings that have at least one digit in them.
+#### Write a Java 8 method that takes a list of strings and returns a new list containing the strings that have at least one digit in them.
 
 ```java
 List<String> words = List.of("apple", "hello123", "world", "java8", "test1ng", "code");
