@@ -778,7 +778,7 @@ words.stream()
 ```
 ---
 
-#### **Explanation**
+#### Explanation
 
 #### **1️⃣ `s.chars()` - Convert String to IntStream**
 Each character in the string is converted to its **ASCII (Unicode) value**:
