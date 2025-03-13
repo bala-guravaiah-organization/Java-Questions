@@ -755,9 +755,9 @@ words.stream()
 ```
 ---
 
-### **Explanation**
+#### **Explanation**
 
-### **1️⃣ `s.chars()` - Convert String to IntStream**
+#### **1️⃣ `s.chars()` - Convert String to IntStream**
 Each character in the string is converted to its **ASCII (Unicode) value**:
 ```java
 "java8".chars() → Stream of [106, 97, 118, 97, 56]
@@ -768,7 +768,7 @@ Each character in the string is converted to its **ASCII (Unicode) value**:
 - `'a'` → 97
 - `'8'` → 56
 
-### **2️⃣ `.anyMatch(Character::isDigit)` - Check for Digits**
+#### **2️⃣ `.anyMatch(Character::isDigit)` - Check for Digits**
 - **`Character.isDigit(c)`** checks if a character is a digit (`0-9`).
 - **`.anyMatch()`** stops processing once it finds the first digit (short-circuiting).
 
