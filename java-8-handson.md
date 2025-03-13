@@ -478,7 +478,7 @@ System.out.println(optionalInteger.orElse(0));
 
 ---
 
-### 3️⃣ Worst Approach: Using `Collectors.summarizingInt()` ❌
+#### 3️⃣ Worst Approach: Using `Collectors.summarizingInt()` ❌
 ```java
 List<Integer> words = List.of(1, 2, 3, 4, 5);
 IntSummaryStatistics intSummaryStatistics = words.stream()
