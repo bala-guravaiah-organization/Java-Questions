@@ -1104,3 +1104,71 @@ public class Main {
 - If an object contains only primitive data types, default cloning (shallow copy) may suffice.
 - Using a copy constructor avoids `Cloneable` and `clone()` method complexities, making code easier to manage.
 - This ensures that modifying one object does not unintentionally modify another.
+---
+
+#### Can we use `this()` and `super()` in the same constructor?
+
+❌ **No, we cannot use both `this()` and `super()` in the same constructor.**
+
+#### Why?
+- **`this()`** is used to call another constructor **within the same class**.
+- **`super()`** is used to call a constructor **from the parent class**.
+- **Both must be the first statement** in a constructor, but a constructor **can have only one first statement**.
+
+---
+#### ❌ Invalid Example (Compilation Error)
+```java
+class Parent {
+    Parent() {
+        System.out.println("Parent Constructor");
+    }
+}
+
+class Child extends Parent {
+    Child() {
+        this();  // ❌ Calls another constructor in the same class
+        super(); // ❌ Calls parent constructor (Error: must be first)
+        System.out.println("Child Constructor");
+    }
+}
+```
+#### 🚨 Compilation Error:
+> Constructor call must be the first statement in a constructor.
+
+---
+#### ✅ Correct Approach (Using Constructor Chaining)
+You **can** use both `this()` and `super()` **indirectly** by chaining constructors:
+
+```java
+class Parent {
+    Parent() {
+        System.out.println("Parent Constructor");
+    }
+}
+
+class Child extends Parent {
+    Child() {
+        super(); // ✅ Calls Parent constructor
+        System.out.println("Child Constructor");
+    }
+
+    Child(int x) {
+        this();  // ✅ Calls the default constructor of Child
+        System.out.println("Child Constructor with parameter: " + x);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        new Child(10);
+    }
+}
+```
+
+#### ✅ Expected Output:
+```
+Parent Constructor
+Child Constructor
+Child Constructor with parameter: 10
+```
+---

@@ -810,6 +810,166 @@ Each character in the string is converted to its **ASCII (Unicode) value**:
 [hello123, java8, test1ng]
 ```
 ---
+ #### Write a Java 8 method that takes a list of integers and returns a new list containing the numbers that are both even and divisible by 3.
+ ```java
+ 	List<Integer> numbers = List.of(5, 2, 8, 3, 1, 7, 4,12);
+		List<Integer> list = numbers.stream()
+		.filter(num -> num%2==0&&num%3==0)
+		.collect(Collectors.toList());
+		System.out.println(list);
+```
+```
+output : [12]
+```
+ #### Write a Java 8 method that takes a list of strings and returns a new list containing only the strings that are palindromes.	
+ ```java
+ List<String> words = List.of("madam", "hello", "racecar", "java", "level", "world");
+		List<String> list = words.stream()
+		     .filter(string -> new StringBuilder(string).reverse().toString().equalsIgnoreCase(string))
+		     .collect(Collectors.toList());
+		System.out.println(list);
+``` 
+```
+output : [madam, racecar, level]
+```
+ #### Write a Java 8 method that takes a list of integers and returns the sum of the squares of the numbers that are divisible by 5.
+
+ ```java
+ List<Integer> numbers = List.of(5, 2, 8, 3, 1, 7, 4,12);
+		int sum = numbers.stream()
+		.filter(num -> num%5==0)
+		.mapToInt(num -> num*num)
+		.sum();
+		System.out.println(sum);
+ ```
+ ```
+ output : 25
+ ```
+ #### Write a Java 8 method that takes a list of strings and returns a new list containing the strings that have at least one uppercase letter and at least one lowercase letter.  
+ ```java
+ List<String> words = List.of("Hello", "WORLD", "java", "SpringBoot", "CODE", "TeSt");
+		List<String> list = words.stream()
+		.filter(num -> num.chars().anyMatch(Character::isUpperCase) && num.chars().anyMatch(Character::isLowerCase))
+		.collect(Collectors.toList());
+		System.out.println(list);
+```
+```
+output : [Hello, SpringBoot, TeSt]
+```
+ #### Write a Java 8 method that takes a list of strings and returns a new list containing only the strings that have exactly three characters.
+ ```java
+ List<String> words = List.of("abc123", "ab123", "hello", "xyz", "a1b2c3", "aB1", "A12BC", "dog456");
+		List<String> list = words.stream()
+		.filter(num -> num.chars().filter(Character::isLetter).count() ==3)
+		.collect(Collectors.toList());
+		System.out.println(list);
+```
+```
+output : [abc123, xyz, a1b2c3, A12BC, dog456]
+```
+ #### Write a Java 8 method that takes a list of integers and returns the sum of all the numbers that are both even and greater than 10.       
+ ```java
+ 	List<Integer> numbers = List.of(5, 2, 8, 3, 1, 7, 4,12);
+		List<Integer> list = numbers.stream()
+		.filter(num -> num > 10 && num%2==0)
+		.collect(Collectors.toList());
+		System.out.println(list);
+```
+```
+output : [12]
+```
+####  Write a Java 8 method that takes a list of strings and returns a new list containing the strings that contain only letters and no digits or special characters. 
+```java
+List<String> words = List.of("abc123", "ab123", "hello", "xyz", "a1b2c3", "aB1", "A12BC", "dog456");
+		List<String> list = words.stream()
+		.filter(string -> string.chars().allMatch(Character::isLetter))
+		.collect(Collectors.toList());
+		System.out.println(list);
+```
+```
+output : [hello, xyz]         
+```
+#### Write a Java 8 method that takes a list of strings and returns a new list containing the strings that have at least two vowels.
+
+```java
+private static long countVowels(String word) {
+    return word.chars().filter(ch -> "AEIOUaeiou".indexOf(ch) != -1).count();
+}
+
+public static List<String> filterStringsWithTwoVowels(List<String> words) {
+    return words.stream()
+            .filter(word -> countVowels(word) >= 2) // Single filter at word level
+            .collect(Collectors.toList());
+}
+```
+
+#### Example Execution
+
+#### Word: `"hello"`
+| Character | ASCII Value | Vowel Check (`indexOf(ch) != -1`) | Kept in Filtered Stream? |
+|-----------|------------|----------------------------------|-------------------------|
+| 'h'       | 104        | `false`                          | No                      |
+| 'e'       | 101        | `true`                           | Yes                     |
+| 'l'       | 108        | `false`                          | No                      |
+| 'l'       | 108        | `false`                          | No                      |
+| 'o'       | 111        | `true`                           | Yes                     |
+
+- **Filtered Stream Output**: `[101, 111]` (i.e., 'e', 'o')
+- **Vowel Count**: `2`
+- **Condition `>= 2` Passes?** ✅ Yes, so `"hello"` is included in the final list.
+
+#### Word: `"sky"`
+| Character | ASCII Value | Vowel Check (`indexOf(ch) != -1`) | Kept in Filtered Stream? |
+|-----------|------------|----------------------------------|-------------------------|
+| 's'       | 115        | `false`                          | No                      |
+| 'k'       | 107        | `false`                          | No                      |
+| 'y'       | 121        | `false`                          | No                      |
+
+- **Filtered Stream Output**: `[]` (No vowels)
+- **Vowel Count**: `0`
+- **Condition `>= 2` Passes?** ❌ No, `"sky"` is excluded.
+
+**Result: `[apple, orange, hello, aei, tea]`**
+
+#### Write a Java 8 method that takes a list of strings and returns a new list containing the strings that have at least one letter and one digit. 
+
+```java
+public static boolean containsOneLetter(String string)
+	{
+		return string.chars().anyMatch(Character::isLetter);
+	}
+	public static boolean containsOnedigit(String string)
+	{
+		return string.chars().anyMatch(Character::isDigit);
+	}
+	
+	public static void main(String[] args) {
+		
+		List<String> words = List.of("123", "ab123", "hello", "xyz", "a1b2c3", "aB1", "A12BC", "dog456");
+		List<String> list = words.stream()
+		.filter(word -> 
+		containsOneLetter(word) && containsOnedigit(word))
+		.collect(Collectors.toList());
+		System.out.println(list);	
+	}
+```
+```
+output : [ab123, a1b2c3, aB1, A12BC, dog456]
+```
+#### Write a Java 8 method that takes a list of integers and returns the second largest number in the list.	
+```java
+List<Integer> numbers = List.of(5, 2, 8, 3, 1, 7, 4,12);
+		Optional<Integer> findFirst = numbers.stream()
+		.distinct()
+		.sorted((o1, o2) -> Integer.compare(o2, o1) )
+		.skip(1)
+		.findFirst();
+		System.out.println(findFirst.get());
+```
+```
+output : 8
+```
+
 
 
    
