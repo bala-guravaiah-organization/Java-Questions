@@ -1,3 +1,27 @@
+#### What are java 11 Features ?
+
+#### Java 11 Importance
+- The section about Oracle JDK's licensing changes is well-explained.
+- Consider adding a comparison of alternative JDKs (e.g., OpenJDK, AdoptOpenJDK) to help users decide.
+
+#### Running Java Programs Without Compilation
+- The step-by-step breakdown is clear.
+- You could add a note on when explicitly compiling with `javac` is still necessary (e.g., large projects, class reuse).
+
+#### String Enhancements
+- Examples are good, but adding more real-world use cases (e.g., `repeat()` for generating patterns, `isBlank()` for input validation) would improve practical understanding.
+
+#### Predicate Interface Enhancements
+- The `not()` method example is great.
+- Consider briefly mentioning how it integrates with method references (e.g., `Predicate.not(String::isEmpty)`).
+
+#### HTTP Client API
+- The synchronous example is clear, but adding a small real-world use case (e.g., fetching API data for a Java application) would be useful.
+- Consider including error handling (e.g., handling timeouts and HTTP status codes).
+
+#### Local Variable Type Inference (`var`) in Lambdas
+- The explanation is clear, but a more detailed justification for using `var` (e.g., for readability, consistency) would strengthen the argument.
+
 ##### Why is Java 11 Important?
 
 - **Java 11 is the second Long-Term Support (LTS) release after Java 8.**
@@ -646,7 +670,7 @@ Java supports four types of nested classes:
 ---
 
 #### 🔹 Why was Nest-Based Access Introduced in Java 11?
-### Before Java 11:
+#### Before Java 11:
 - The compiler generated **bridge methods** to allow private member access.
 - These additional methods increased **bytecode size** and **runtime complexity**.
 
