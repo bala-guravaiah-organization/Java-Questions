@@ -969,6 +969,141 @@ List<Integer> numbers = List.of(5, 2, 8, 3, 1, 7, 4,12);
 ```
 output : 8
 ```
+---
+#### Write a Java 8 method that takes a list of strings and returns a new list containing the strings that have the letter 'a' as the third character.
+```java
+List<String> words = List.of("123", "ab123", "hello", "xyz", "a1b2c3", "aB1", "A12BC", "dog456","aba");
+		List<String> list = words.stream()
+				.filter(string -> string.length()>=3 && string.substring(2,3).contains("a"))
+				.collect(Collectors.toList());
+		System.out.println(list);
+```
+```
+output : [abc]
+```
+#### Write a Java 8 method that takes a list of strings and returns a new list containing only the strings that have the letter 'z' as the last character. 
+```java
+List<String> words = List.of("123", "ab123", "hello", "xyz", "a1b2c3", "aB1", "A12BC", "dog456","abz");
+		List<String> list = words.stream()
+				.filter(string -> string.substring(string.length()-1, string.length()).contains("z"))
+				.collect(Collectors.toList());
+		System.out.println(list);
+```
+```
+output : [xyz, abz]
+```
+#### Write a Java 8 method that takes a list of strings and returns a new list containing the strings that have at least one letter in common with the word "Java"
+```java
+List<String> words = List.of("123", "ab123", "hello", "xyz", "a1b2c3", "aB1", "A12BC", "dog456","abz");
+		String externalString = "java";
+		List<String> list = words.stream()
+				.filter(string -> string.chars().anyMatch(c -> externalString.indexOf(c)>=0))
+				.collect(Collectors.toList());
+		System.out.println(list);
+```
+
+#### Role of indexOf:
+- The method indexOf(c) checks if the character 'c' exists in the word "Java".
+- If the character is found, it returns its index (0-based), otherwise, it returns -1.
+- The condition indexOf(c) >= 0 ensures that we keep only words that contain at least one letter from "Java".
+- This is used in combination with anyMatch() to filter words efficiently.
+Example:
+  - For "Value":
+    - 'V' -> -1 (not found)
+    - 'a' -> 1 (found, so "Value" is included in the result).
+
+#### Write a Java 8 method that takes a list of strings and returns a new list containing the strings that are composed of only uppercase letters. 
+```java
+List<String> words = List.of("123", "ab123", "hello", "xyz", "a1b2c3", "aB1", "A12BC", "dog456","abz", "ABC");
+		List<String> list = words.stream()
+				.filter(s -> s.chars().allMatch(Character::isUpperCase))
+				.collect(Collectors.toList());
+		System.out.println(list);
+```
+```
+output : [ABC]
+```
+- if you want to ignore numbers and want to compare only letter that are there in upper case.
+```java
+	
+		List<String> words = List.of("123", "ab123", "hello", "xyz", "a1b2c3", "aB1", "A12BC", "dog456","abz", "ABC");
+		List<String> list = words.stream()
+				.filter(s -> 
+				s.replaceAll("[1-9]", "").chars().allMatch(Character::isUpperCase)
+				)
+				.collect(Collectors.toList());
+		System.out.println(list);
+
+```
+```
+output : [123, A12BC, ABC]
+```
+#### Write a Java 8 method that takes a list of strings and returns a new list containing the strings that have a length of at least 10 characters. 
+```java
+List<String> inputList = List.of("HELLO", "APPLE", "VALUE", "World", "JOKER", "TEST123", "UPPER-CASE",
+				"LONGSTRINGEXAMPLE");
+		List<String> list = inputList.stream()
+				 .filter(s -> s.replaceAll("[1-9]", "").length() > 10)
+				.collect(Collectors.toList());
+		System.out.println(list);
+```
+```
+output : [LONGSTRINGEXAMPLE]
+```
+####  Write a Java 8 method that takes a list of integers and returns the largest number that is less than or equal to the average of all the numbers in the list.
+```java
+List<Integer> numbers = List.of(10, 20, 30, 40, 50, 60);
+		double avg = numbers.stream()
+		.mapToInt(Integer::intValue)
+		.average().orElse(0);
+		
+		int maxNumber = numbers.stream()
+		.filter(num -> num < avg)
+		.mapToInt(Integer::intValue)
+		.max().orElse(0);
+		System.out.println(maxNumber);
+``` 
+```
+output : 30
+```
+#### Write a Java 8 method that takes a list of strings and returns a new list containing the strings that have the letter 'e' but not the letter 'a'.
+```java
+List<String> inputList = List.of("Hello", "Apple", "Elephant", "Tree", "Bee", "Desk", "Slate");
+		List<String> list = inputList.stream()
+		.filter(stringInput -> stringInput.toLowerCase().contains("e") && !stringInput.toLowerCase().contains("a"))
+		.collect(Collectors.toList());
+		System.out.println(list);
+```
+```
+output : [Hello, Tree, Bee, Desk]
+```
+#### Write a Java 8 lambda expression to sort a list of strings in alphabetical order, ignoring case.	
+```java
+List<String> inputList = List.of("Hello", "Apple", "Elephant", "Tree", "Bee", "Desk", "Slate");
+		List<String> list = inputList.stream()
+		.sorted(String::compareToIgnoreCase)
+		.collect(Collectors.toList());
+		System.out.println(list);	
+```
+```
+output : [Apple, Bee, Desk, Elephant, Hello, Slate, Tree]
+```
+#### Write a Java 8 method that takes a list of integers and returns a new list containing the numbers that are both odd and greater than the average of all the numbers in the list. 
+```java
+List<Integer> list = Arrays.asList(10, 15, 20, 25, 30, 35, 40, 45);
+		double avg = list.stream().mapToInt(Integer::intValue)
+		.average().orElse(0);
+		
+		List<Integer> finalList = list.stream()
+		.filter(inputNumber -> inputNumber%2!=0 && inputNumber > avg)
+		.collect(Collectors.toList());
+		System.out.println(finalList);
+```
+```
+output : [35, 45]
+```
+
+	
 
 
 
