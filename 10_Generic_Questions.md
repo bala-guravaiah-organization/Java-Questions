@@ -62,7 +62,7 @@ Auto-boxing: 10
 Un-boxing: 20
 ```
 
-**Explain static keyword in Java**
+#### Explain static keyword in Java?
 
 **Answer:** In Java, a `static` member is a member of a class that isn’t associated with an instance of a class. Instead, the member belongs to the class itself.
 
@@ -143,7 +143,7 @@ class OuterClass {
 Static method in static nested class
 ```
 
-**What is an Inner Class in Java, how it can be instantiated, and what are the types of Inner Classes?**
+#### What is an Inner Class in Java, how it can be instantiated, and what are the types of Inner Classes?
 
 **Answer:** In Java, when you define one **non-static** class within another class, it is called an **Inner Class (Nested Class)**. Inner classes allow logically grouping classes that are only used in one place, thereby increasing encapsulation and making the code more readable and maintainable.
 
@@ -208,7 +208,7 @@ Inner classes cannot have static members.
 ---
 
 #### **Special Types of Inner Classes:**
-### **1. Local Inner Class:**
+#### **1. Local Inner Class:**
 - Defined **inside a block**, usually within a method, loop, or if clause.
 - **Not a member of the enclosing class** but belongs to the block it is defined in.
 - Cannot have **access modifiers**, but can be `final` or `abstract`.
@@ -484,7 +484,6 @@ x: 10
 
 #### Explain enum in Java**
 
-#### **Answer:**
 An **enum** in Java is a special data type that contains a **fixed set of constants**. Enums improve **type safety** and can also have **fields, methods, and constructors**.
 
 #### **Key Points about Enums:**
@@ -648,7 +647,6 @@ Status: FAILURE
 
 #### What is Cloneable?
 
-#### **Answer:**
 `Cloneable` is an interface in Java that must be implemented by a class to allow its objects to be cloned.
 
 - A class implements the `Cloneable` interface to indicate to the `Object.clone()` method that it is legal to make a field-for-field copy of instances of that class.
