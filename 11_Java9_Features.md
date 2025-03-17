@@ -15,8 +15,35 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+// Class representing a Dish with properties: name, vegetarian status, calories, and type
+class Dish {
+    private String name;
+    private boolean vegetarian;
+    private int calories;
+    private Type type;
+    
+    public Dish(String name, boolean vegetarian, int calories, Type type) {
+        this.name = name;
+        this.vegetarian = vegetarian;
+        this.calories = calories;
+        this.type = type;
+    }
+    
+    public int getCalories() {
+        return calories;
+    }
+    
+    @Override
+    public String toString() {
+        return name + " (" + calories + " cal)";
+    }
+    
+    enum Type { MEAT, FISH, OTHER }
+}
+
 public class StreamSlicingExample {
     public static void main(String[] args) {
+        // Creating a list of dishes
         List<Dish> specialMenu = Arrays.asList(
             new Dish("seasonal fruit", true, 120, Dish.Type.OTHER),
             new Dish("prawns", false, 300, Dish.Type.FISH),
@@ -25,13 +52,17 @@ public class StreamSlicingExample {
             new Dish("french fries", true, 530, Dish.Type.OTHER)
         );
 
+        // Using takeWhile to select dishes with calories less than 320
+        // It stops at the first element that does not satisfy the condition
         List<Dish> slicedMenu = specialMenu.stream()
                 .takeWhile(dish -> dish.getCalories() < 320)
                 .collect(Collectors.toList());
 
+        // Printing the filtered list
         System.out.println(slicedMenu);
     }
 }
+
 ```
 
 #### Output:
@@ -47,11 +78,47 @@ The `dropWhile` method discards elements at the beginning of the stream while th
 
 #### Example:
 ```java
-List<Dish> slicedMenu2 = specialMenu.stream()
-        .dropWhile(dish -> dish.getCalories() < 320)
-        .collect(Collectors.toList());
+import java.util.*;
+import java.util.stream.Collectors;
 
-System.out.println(slicedMenu2);
+class Dish {
+    private String name;
+    private int calories;
+
+    public Dish(String name, int calories) {
+        this.name = name;
+        this.calories = calories;
+    }
+
+    public int getCalories() {
+        return calories;
+    }
+
+    @Override
+    public String toString() {
+        return name + " (" + calories + " cal)";
+    }
+}
+
+public class DropWhileExample {
+    public static void main(String[] args) {
+        // Creating a list of dishes with different calorie values
+        List<Dish> specialMenu = Arrays.asList(
+            new Dish("Salad", 200),
+            new Dish("Soup", 250),
+            new Dish("Pasta", 320),
+            new Dish("Steak", 500)
+        );
+
+        // Using dropWhile to discard elements with calories < 320
+        List<Dish> slicedMenu2 = specialMenu.stream()
+                .dropWhile(dish -> dish.getCalories() < 320) // Drops elements until one fails the predicate
+                .collect(Collectors.toList()); // Collects remaining elements into a list
+
+        // Printing the resulting list
+        System.out.println(slicedMenu2); 
+    }
+}
 ```
 
 #### Output:
