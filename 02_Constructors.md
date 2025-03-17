@@ -1,12 +1,12 @@
 
-## 1. Can a constructor be private? In which scenarios is it useful?
-### **Answer:**  
+#### Can a constructor be private? In which scenarios is it useful?
+#### **Answer:**  
 Yes, a constructor can be `private` in Java. This is mainly used in:  
 1. **Singleton Design Pattern:** Ensures only one instance of a class exists.  
 2. **Factory Methods:** Restricts direct object creation and allows controlled instantiation via static methods.  
 3. **Static Utility Classes:** Prevents instantiation of classes like `Math` or `Collections`.  
 
-### **Example: Singleton Class with a Private Constructor**  
+#### **Example: Singleton Class with a Private Constructor**  
 ```java
 class Singleton {
     private static Singleton instance;
@@ -36,7 +36,7 @@ Instance created
 true
 ```
 
-### **Cross-questions you might face:**  
+#### **Cross-questions you might face:**  
 1. **What happens if you try to create an object of a class with a private constructor?**  
    → Compilation error if there’s no static method to access it.  
 2. **Can an inner class access a private constructor of the outer class?**  
@@ -44,14 +44,14 @@ true
 
 ---
 
-## 2. What is the use of the `super` keyword? How is it utilized in a Spring Boot microservices architecture?
-### **Answer:**  
+#### What is the use of the `super` keyword? How is it utilized in a Spring Boot microservices architecture?
+ 
 `super` is used to refer to the immediate parent class members (variables, methods, or constructors).  
 - **Access Parent Class Method:** `super.methodName();`  
 - **Access Parent Class Constructor:** `super();`  
 - **Access Parent Class Variable:** `super.variableName;`  
 
-### **Example: Using `super` to Call Parent Constructor**
+##### **Example: Using `super` to Call Parent Constructor**
 ```java
 class Parent {
     Parent() {
@@ -76,13 +76,13 @@ Parent constructor
 Child constructor
 ```
 
-### **Usage in Spring Boot Microservices:**  
+#### **Usage in Spring Boot Microservices:**  
 In Spring Boot, `super` is used in:  
 - **Extending `JpaRepository` in Repository classes**  
 - **Calling Parent `@Service` or `@Component` Methods**  
 - **Extending Base Controller or Exception Handlers**  
 
-### **Cross-questions you might face:**  
+#### **Cross-questions you might face:**  
 1. **What happens if you don’t use `super()` in a constructor?**  
    → The compiler automatically adds `super();` unless the parent class has no default constructor.  
 2. **Can `super` be used inside a static method?**  
@@ -90,8 +90,8 @@ In Spring Boot, `super` is used in:
 
 ---
 
-## 3. How does an interface differ from an abstract class? Provide an example where you implemented an interface in your project.
-### **Answer:**  
+#### How does an interface differ from an abstract class? Provide an example where you implemented an interface in your project.
+ 
 | Feature              | Interface | Abstract Class |
 |----------------------|-----------|---------------|
 | Methods             | Only abstract methods (until Java 8) | Can have both abstract & concrete methods |
@@ -99,7 +99,7 @@ In Spring Boot, `super` is used in:
 | Multiple Inheritance | Yes | No |
 | Constructors        | Not allowed | Allowed |
 
-### **Example: Implementing an Interface**
+#### **Example: Implementing an Interface**
 ```java
 interface Payment {
     void processPayment(double amount);
@@ -121,7 +121,7 @@ public class Test {
 Processing credit card payment: $100
 ```
 
-### **Cross-questions you might face:**  
+#### **Cross-questions you might face:**  
 1. **Can an interface have a constructor?**  
    → No, because interfaces don’t have instance variables.  
 2. **How are default methods in interfaces useful?**  
@@ -129,8 +129,8 @@ Processing credit card payment: $100
 
 ---
 
-## 4. Can a Java class implement multiple interfaces? How does Spring handle multiple interface implementations in dependency injection?
-### **Answer:**  
+#### Can a Java class implement multiple interfaces? How does Spring handle multiple interface implementations in dependency injection?
+ 
 Yes, a Java class can implement multiple interfaces.  
 ```java
 interface A {
@@ -144,7 +144,7 @@ class C implements A, B {
     public void methodB() { System.out.println("B method"); }
 }
 ```
-### **How Spring Handles Multiple Implementations?**  
+#### **How Spring Handles Multiple Implementations?**  
 - **@Primary:** Marks one implementation as the default.  
 - **@Qualifier:** Specifies which implementation should be injected.  
 
@@ -163,7 +163,7 @@ public class PaymentService {
 }
 ```
 
-### **Cross-questions you might face:**  
+#### **Cross-questions you might face:**  
 1. **What happens if two beans implement the same interface and neither has `@Primary`?**  
    → Spring throws `NoUniqueBeanDefinitionException`.  
 2. **Can an interface extend another interface?**  
@@ -171,11 +171,11 @@ public class PaymentService {
 
 ---
 
-## 5. How to use `this()` to call another constructor inside the same class?
-### **Answer:**
+#### How to use `this()` to call another constructor inside the same class?
+
 In Java, `this()` is used to call another constructor within the same class. This helps in constructor chaining and avoids code duplication.
 
-### **Example:**
+#### **Example:**
 ```java
 class Person {
     String name;
@@ -204,15 +204,14 @@ public class Test {
 Name: Unknown, Age: 0
 Name: John, Age: 25
 ```
-## Using `this` in a Spring Boot Project
-
-### **Answer:**  
+#### Using `this` in a Spring Boot Project
+ 
 In a Spring Boot project, `this` is often used to refer to the current instance within a class, primarily in:
 1. **Dependency Injection in Constructors**
 2. **Updating Model Objects**
 3. **Fluent APIs for Method Chaining**
 
-### **1. Using `this` in Constructor Injection**
+#### **1. Using `this` in Constructor Injection**
 Spring Boot allows constructor-based dependency injection. `this` can be used to differentiate between instance variables and constructor parameters.
 ```java
 import org.springframework.stereotype.Service;
@@ -227,7 +226,7 @@ public class UserService {
 }
 ```
 
-### **2. Using `this` in Model Objects**
+#### **2. Using `this` in Model Objects**
 `this` is used inside entity classes to return the current instance, enabling fluent API usage.
 ```java
 import jakarta.persistence.*;
@@ -246,7 +245,7 @@ public class User {
 }
 ```
 
-### **3. Using `this` in Method Calls**
+#### **3. Using `this` in Method Calls**
 When calling another method within the same class, `this` ensures clarity.
 ```java
 @Service
@@ -261,17 +260,16 @@ public class NotificationService {
 }
 ```
 
-### **Best Practices:**
+#### **Best Practices:**
 ✔ Use `this` when necessary to avoid ambiguity.
 ✔ Avoid excessive use if context is already clear.
 ✔ Prefer constructor-based injection over field injection for better testability.
 
-## Can `this` Be Used in a Static Method?
+#### Can `this` Be Used in a Static Method?
 
-### **Answer:**  
 No, `this` cannot be used in a static method because `this` refers to the current instance of the class, and static methods belong to the class rather than an instance.
 
-### **Example of Incorrect Usage:**
+#### **Example of Incorrect Usage:**
 ```java
 class Example {
     static void staticMethod() {
@@ -281,11 +279,11 @@ class Example {
 ```
 **Error:** `Cannot use 'this' in a static context.`
 
-### **Why?**
+#### **Why?**
 - Static methods are associated with the class itself, not an instance.
 - `this` refers to an object instance, which does not exist inside a static method.
 
-### **Alternative Solution:**
+#### **Alternative Solution:**
 If you need an instance reference inside a static method, create an object:
 ```java
 class Example {
@@ -300,17 +298,17 @@ class Example {
 }
 ```
 
-### **Key Takeaways:**
+#### **Key Takeaways:**
 ✔ `this` can only be used in instance methods or constructors.
 ✔ Use object references inside static methods if an instance is needed.
 ✔ Static methods are meant for operations independent of instance data.
 
-## How to Use `super()` to Call a Parent Class Constructor?
+#### How to Use `super()` to Call a Parent Class Constructor?
 
-### **Answer:**
+
 In Java, `super()` is used to call a constructor of the immediate parent class. This is helpful for initializing parent class properties before executing child class logic.
 
-### **Example: Calling Parent Constructor**
+#### **Example: Calling Parent Constructor**
 ```java
 class Parent {
     Parent() {
@@ -337,12 +335,12 @@ Parent constructor
 Child constructor
 ```
 
-### **Key Points:**
+#### **Key Points:**
 ✔ `super()` must be the first statement in a constructor.  
 ✔ If a parent class has a parameterized constructor, you must explicitly call `super(args)`.  
 ✔ If no constructor is defined in the parent class, Java provides a default constructor.
 
-### **Example: Calling Parameterized Parent Constructor**
+#### **Example: Calling Parameterized Parent Constructor**
 ```java
 class Parent {
     Parent(String name) {
@@ -366,12 +364,12 @@ Child constructor
 ✔ Use `super(args)` to pass parameters to the parent constructor. 
 ✔ If a parent has only parameterized constructors, you must call one explicitly using `super()`.
 
-## How to Use `super()` to Call a Parent Class Constructor?
+#### How to Use `super()` to Call a Parent Class Constructor?
 
 ### **Answer:**
 In Java, `super()` is used to call a constructor of the immediate parent class. This is helpful for initializing parent class properties before executing child class logic.
 
-### **Example: Calling Parent Constructor**
+#### **Example: Calling Parent Constructor**
 ```java
 class Parent {
     Parent() {
@@ -398,12 +396,12 @@ Parent constructor
 Child constructor
 ```
 
-### **Key Points:**
+#### **Key Points:**
 ✔ `super()` must be the first statement in a constructor.  
 ✔ If a parent class has a parameterized constructor, you must explicitly call `super(args)`.  
 ✔ If no constructor is defined in the parent class, Java provides a default constructor.
 
-### **Example: Calling Parameterized Parent Constructor**
+#### **Example: Calling Parameterized Parent Constructor**
 ```java
 class Parent {
     Parent(String name) {
@@ -427,12 +425,12 @@ Child constructor
 ✔ Use `super(args)` to pass parameters to the parent constructor. 
 ✔ If a parent has only parameterized constructors, you must call one explicitly using `super()`.
 
-## Using `super()` in a Spring Boot Project
+#### Using `super()` in a Spring Boot Project
 
 ### **Answer:**
 Yes, in a Spring Boot project, `super()` is commonly used when extending base classes such as controllers, services, or custom exception handlers.
 
-### **Example: Extending a Base Service Class**
+#### **Example: Extending a Base Service Class**
 ```java
 @Service
 class BaseService {
@@ -467,12 +465,12 @@ BaseService initialized: User Service
 UserService initialized
 ```
 
-### **Where `super()` is Useful in Spring Boot?**
+#### **Where `super()` is Useful in Spring Boot?**
 ✔ **Extending `JpaRepository` or `CrudRepository`** – You don’t need `super()`, but extending a repository provides default functionality.  
 ✔ **Custom Exception Handling** – Calling parent exception class with `super(message)`.  
 ✔ **Base Controller Classes** – To share common logic across multiple controllers.
 
-### **Example: Using `super()` in a Custom Exception**
+#### **Example: Using `super()` in a Custom Exception**
 ```java
 class CustomException extends RuntimeException {
     CustomException(String message) {
@@ -482,15 +480,14 @@ class CustomException extends RuntimeException {
 
 throw new CustomException("User not found");
 ```
-## What happens if you don’t explicitly call `super()` in a constructor?
+#### What happens if you don’t explicitly call `super()` in a constructor?
 
-### **Answer:**
 If you don’t explicitly call `super()` in a constructor, the compiler automatically inserts a call to the no-argument constructor of the parent class. This means:
 
 1. **If the parent class has a no-argument constructor**, it is called implicitly.
 2. **If the parent class does not have a no-argument constructor**, a compilation error occurs.
 
-### **Example: When Parent Has a Default Constructor**
+#### **Example: When Parent Has a Default Constructor**
 ```java
 class Parent {
     Parent() {
@@ -517,7 +514,7 @@ Parent constructor
 Child constructor
 ```
 
-### **Example: When Parent Has No Default Constructor**
+#### **Example: When Parent Has No Default Constructor**
 ```java
 class Parent {
     Parent(int x) { // No default constructor
@@ -537,17 +534,16 @@ class Child extends Parent {
 Constructor Parent() is undefined. Must explicitly invoke another constructor
 ```
 
-### **Key Takeaways:**
+#### **Key Takeaways:**
 ✔ If the parent class has a default constructor, the compiler calls `super()` automatically.
 ✔ If the parent class only has parameterized constructors, you must explicitly call `super(arguments)`. 
 ✔ If the parent class has no accessible constructor, the child class cannot be instantiated.
 
-## How does constructor chaining work in Java?
+#### How does constructor chaining work in Java?
 
-### **Answer:**
 Constructor chaining in Java refers to the process of calling one constructor from another constructor within the same class or from a parent class using `this()` or `super()`. This helps in reusing code and reducing redundancy.
 
-### **Example: Constructor Chaining in the Same Class**
+#### **Example: Constructor Chaining in the Same Class**
 ```java
 class Person {
     String name;
@@ -578,7 +574,7 @@ Name: Unknown, Age: 0
 Name: John, Age: 25
 ```
 
-### **Example: Constructor Chaining in Parent-Child Classes**
+#### **Example: Constructor Chaining in Parent-Child Classes**
 ```java
 class Parent {
     Parent() {
@@ -606,17 +602,16 @@ Parent Constructor
 Child Constructor
 ```
 
-### **Key Points:**
+#### **Key Points:**
 ✔ `this()` calls another constructor within the same class.  
 ✔ `super()` calls the parent class constructor.  
 ✔ Constructor chaining ensures a smooth initialization sequence.
 
-## Differences Between Default, Parameterized, and Copy Constructors
+#### Differences Between Default, Parameterized, and Copy Constructors
 
-### **1. Default Constructor**
+#### **1. Default Constructor**
 A constructor that takes no arguments and initializes an object with default values.
 
-#### **Example:**
 ```java
 class Person {
     String name;
@@ -647,10 +642,9 @@ Name: Unknown, Age: 0
 
 ---
 
-### **2. Parameterized Constructor**
+#### **2. Parameterized Constructor**
 A constructor that accepts arguments to initialize an object with specific values.
 
-#### **Example:**
 ```java
 class Person {
     String name;
@@ -681,10 +675,9 @@ Name: John, Age: 25
 
 ---
 
-### **3. Copy Constructor**
+#### **3. Copy Constructor**
 A constructor that creates a new object by copying values from another object of the same class.
 
-#### **Example:**
 ```java
 class Person {
     String name;
@@ -722,7 +715,7 @@ Name: Alice, Age: 30
 
 ---
 
-### **Key Differences**
+#### **Key Differences**
 | Type | Description | Example Usage |
 |------|------------|--------------|
 | **Default Constructor** | No parameters, assigns default values | Used when default initialization is needed |
@@ -731,12 +724,11 @@ Name: Alice, Age: 30
 
 These constructors help in efficient object creation and management in Java.
 
-## How does Spring Boot use constructors for dependency injection?
+#### How does Spring Boot use constructors for dependency injection?
 
-### **Answer:**
 Spring Boot supports **Constructor-based Dependency Injection**, which is preferred for mandatory dependencies as it ensures immutability and testability.
 
-### **Example: Constructor-based Dependency Injection**
+#### **Example: Constructor-based Dependency Injection**
 ```java
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -795,25 +787,23 @@ ServiceA executed
 ServiceB performed
 ```
 
-### **Why Constructor Injection?**
+#### **Why Constructor Injection?**
 - **Ensures immutability**: Dependencies are final.
 - **Better for unit testing**: No need for setters.
 - **Avoids null references**: Ensures all dependencies are injected at object creation.
 - **Spring Boot optimization**: Reduces boilerplate code (`@Autowired` is optional in a single constructor case).
 
-### **Cross-questions you might face:**
+#### **Cross-questions you might face:**
 1. **Can Spring Boot inject dependencies without `@Autowired`?**
    → Yes, if there's only one constructor, Spring automatically injects dependencies.
 2. **How does constructor injection compare to field injection?**
    → Constructor injection is preferred as it ensures immutability and testability.
 
 
-## Can we call a constructor explicitly from another constructor? How?
-
-### **Answer:**
+#### Can we call a constructor explicitly from another constructor? How?
 Yes, we can call a constructor explicitly from another constructor within the same class using `this()`. This is known as **constructor chaining**, which helps in reducing code duplication.
 
-### **Example: Constructor Chaining using `this()`**
+#### Constructor Chaining using `this()`**
 ```java
 class Person {
     String name;
@@ -840,32 +830,31 @@ public class Test {
 }
 ```
 
-### **Output:**
+#### **Output:**
 ```
 Name: Unknown, Age: 0
 Name: John, Age: 25
 ```
 
-### **Why Use Constructor Chaining?**
+#### **Why Use Constructor Chaining?**
 - Reduces code duplication.
 - Ensures a single point of initialization logic.
 - Improves maintainability and readability.
 
-### **Cross-questions you might face:**
+#### **Cross-questions you might face:**
 1. **Can `this()` be the last statement in a constructor?**  
    → No, `this()` must be the first statement.
 2. **Can a constructor call another constructor from a different class?**  
    → No, `this()` only works within the same class. Use `super()` for calling parent class constructors.
 
-## What is a private constructor? How is it used in Singleton design patterns?
+#### What is a private constructor? How is it used in Singleton design patterns?
 
-### **Answer:**
 A **private constructor** in Java restricts object creation from outside the class. It is commonly used in **Singleton Design Patterns**, **Factory Methods**, and **Utility Classes**.
 
-### **Use in Singleton Design Pattern:**
+#### **Use in Singleton Design Pattern:**
 The **Singleton Pattern** ensures only one instance of a class is created and provides a global access point to it.
 
-### **Example: Singleton using Private Constructor**
+#### **Example: Singleton using Private Constructor**
 ```java
 class Singleton {
     private static Singleton instance;
@@ -893,29 +882,28 @@ public class Test {
 }
 ```
 
-### **Output:**
+#### **Output:**
 ```
 Instance created
 true
 ```
 
-### **Key Advantages of Singleton with Private Constructor:**
+#### **Key Advantages of Singleton with Private Constructor:**
 - Ensures a **single instance** of the class.
 - Saves **memory** by preventing multiple object creation.
 - Useful in **database connections, logging, and thread pools**.
 
-### **Cross-questions you might face:**
+#### **Cross-questions you might face:**
 1. **Can a private constructor be accessed in an inner class?**  
    → Yes, inner classes can access private constructors of the outer class.
 2. **What happens if we try to create an instance of a class with a private constructor?**  
    → A compilation error occurs unless a static method (like `getInstance()`) is used to create an object.
 
-## How did you use constructors in your Microservices project (Spring Beans, Models, or Controllers)?
+#### How did you use constructors in your Microservices project (Spring Beans, Models, or Controllers)?
 
-### **Answer:**
 In a **Spring Boot Microservices project**, constructors are widely used for **dependency injection, initializing model objects, and controller instantiation**.
 
-### **1. Constructor-based Dependency Injection in Spring Beans**
+#### **1. Constructor-based Dependency Injection in Spring Beans**
 Spring recommends **constructor-based dependency injection** to ensure immutability and better testability.
 
 ```java
@@ -934,7 +922,7 @@ public class PaymentService {
 }
 ```
 
-### **2. Constructor in Model Classes**
+#### **2. Constructor in Model Classes**
 Model classes often have **default, parameterized, and copy constructors** for entity creation.
 
 ```java
@@ -957,7 +945,7 @@ public class Order {
 }
 ```
 
-### **3. Constructor in Controllers**
+#### **3. Constructor in Controllers**
 Spring controllers often use constructors for injecting **services**.
 
 ```java
@@ -978,21 +966,20 @@ public class OrderController {
 }
 ```
 
-### **Key Benefits of Using Constructors in Microservices:**
+#### **Key Benefits of Using Constructors in Microservices:**
 - **Enforces immutability** (fields declared `final`).
 - **Easier unit testing** (no need for `@Autowired`).
 - **Clear dependency visibility**.
 
-### **Cross-questions you might face:**
+#### **Cross-questions you might face:**
 1. **Why is constructor-based injection preferred over field injection?**
    → It makes dependencies explicit, supports immutability, and is easier to test.
 2. **Can we use Lombok to reduce boilerplate constructor code?**
    → Yes, `@AllArgsConstructor` and `@NoArgsConstructor` can generate constructors automatically.  
 
 
-   ### What is called first, constructor or init block?
+#### What is called first, constructor or init block?
 
-#### **Answer:**
 In Java, the **instance initializer block (init block)** is executed **before** the constructor when an object is created. The order of execution is:
 1. **Static Initializer Block** (if any, executes only once when the class is loaded)
 2. **Instance Initializer Block** (executes before the constructor on every object creation)
@@ -1039,7 +1026,7 @@ Constructor executed
 3. What is the difference between static and instance initializer blocks?
    → Static blocks execute once per class loading, whereas instance blocks execute on every object creation.
 
-### Using Copy Constructor to Perform Deep Copy in Java
+#### Using Copy Constructor to Perform Deep Copy in Java
 
 #### **What is a Copy Constructor?**
 A **copy constructor** is a special type of constructor that creates a new object by copying the values of an existing object. This is particularly useful when performing a **deep copy**, ensuring that changes in the copied object do not affect the original object.

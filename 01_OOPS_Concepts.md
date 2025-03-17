@@ -265,7 +265,6 @@ This allows defining utility methods directly in interfaces without requiring an
 
 #### Why Java does not allow multiple inheritance?
 
-### Answer:
 Multiple inheritance occurs when a class has more than one parent class.
 
 #### Why Java does not allow this?
@@ -304,8 +303,6 @@ public class Child extends Parent1 /* Syntax error here: cannot extend Parent2 *
 
 #### What are the rules for Method Overloading and Method Overriding?
 
-#### Answer:
-
 #### Method Overloading Rules:
 Two methods can be called overloaded if they follow the rules below:
 - **Both must have the same method name.**
@@ -335,21 +332,19 @@ No, final methods cannot be overridden.
 
 #### Can constructors and private methods be overridden?
 
-### Answer:
 No.
 
 ---
 
 #### Question 13: What is the final keyword and where can it be used?
 
-#### Answer:
 - If you use `final` with a **primitive type variable**, then its value cannot be changed once assigned.
 - If you use `final` with a **method**, then you cannot override it in the subclass.
 - If you use `final` with a **class**, then that class cannot be extended.
 - If you use `final` with an **object type**, then that object cannot be referenced again.
 
 #### What is a Marker Interface?
-#### Answer:
+
 A **Marker Interface** is an interface that does not contain any methods or fields. Some common marker interfaces in Java include:
 - `Cloneable`
 - `Serializable`
@@ -372,7 +367,7 @@ if (!(obj instanceof Serializable)) {
 ```
 
 #### Can you write your own custom Marker Interface?
-#### Answer:
+
 Yes! Since marker interfaces are just used for classification and checked using `instanceof`, you can define your own.
 
 #### Example:
