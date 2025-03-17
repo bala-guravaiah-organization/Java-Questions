@@ -1,36 +1,23 @@
 #### What are java 11 Features ?
 
-#### Java 11 Importance
-- The section about Oracle JDK's licensing changes is well-explained.
-- Consider adding a comparison of alternative JDKs (e.g., OpenJDK, AdoptOpenJDK) to help users decide.
-
-#### Running Java Programs Without Compilation
-- The step-by-step breakdown is clear.
-- You could add a note on when explicitly compiling with `javac` is still necessary (e.g., large projects, class reuse).
-
-#### String Enhancements
-- Examples are good, but adding more real-world use cases (e.g., `repeat()` for generating patterns, `isBlank()` for input validation) would improve practical understanding.
-
-#### Predicate Interface Enhancements
+- Java 11 Importance
+- Running Java Programs Without Compilation
+- String Enhancements
+- Predicate Interface Enhancements
 - The `not()` method example is great.
-- Consider briefly mentioning how it integrates with method references (e.g., `Predicate.not(String::isEmpty)`).
+- HTTP Client API
+- Local Variable Type Inference (`var`) in Lambdas
 
-#### HTTP Client API
-- The synchronous example is clear, but adding a small real-world use case (e.g., fetching API data for a Java application) would be useful.
-- Consider including error handling (e.g., handling timeouts and HTTP status codes).
-
-#### Local Variable Type Inference (`var`) in Lambdas
-- The explanation is clear, but a more detailed justification for using `var` (e.g., for readability, consistency) would strengthen the argument.
 
 ##### Why is Java 11 Important?
 
-- **Java 11 is the second Long-Term Support (LTS) release after Java 8.**
-- **Oracle JDK is no longer free for commercial use starting from Java 11.**
+- Java 11 is the second Long-Term Support (LTS) release after Java 8.**
+- Oracle JDK is no longer free for commercial use starting from Java 11.**
 - You can use it **freely during development**, but a **paid license** is required for commercial deployment.  
-  - ⚠️ Without a license, you may receive an **invoice from Oracle**.
+  - ⚠️ Without a license, you may receive an invoice from Oracle.
 - **Java 10 was the last free Oracle JDK** available for download.
-- **Oracle ended free support for Java 8 in January 2019**, requiring payment for extended support.
-- While Java 8 can still be used, it **no longer receives security patches or updates**.
+- **Oracle ended free support** for Java 8 in January 2019, requiring payment for extended support.
+- While Java 8 can still be used, it no longer receives security patches or updates.
 ---
 #### Running Java Programs Without Explicit Compilation
 
