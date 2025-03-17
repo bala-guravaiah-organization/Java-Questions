@@ -137,7 +137,6 @@ s.forEach(System.out::println); // Throws IllegalStateException
 
 #### **1. External Iteration (Java 7 and Earlier)**
 
-### **Definition:**
 External iteration is when the programmer explicitly controls how data is iterated, typically using loops or iterators.
 
 #### **Example: Using for-each Loop (Java 7)**
