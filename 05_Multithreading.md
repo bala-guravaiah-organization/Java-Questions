@@ -312,3 +312,199 @@ public class ThreadExample {
 ❌ **Use `Thread`** only if you need to override its methods like `start()`, `join()`, etc.
 
 ---
+#### Explain Thread Life Cycle in Java
+
+A thread in Java goes through the following states during its execution:
+
+1. **NEW**  
+2. **RUNNABLE**  
+3. **BLOCKED**  
+4. **WAITING**  
+5. **TIMED_WAITING**  
+6. **TERMINATED**  
+
+#### **1. NEW State**
+- When a thread is created but **not yet started**, it is in the **NEW** state.  
+- It remains in this state until `start()` is called.
+
+#### **Example:**
+```java
+class NewStateExample extends Thread {
+    public void run() {
+        System.out.println("Thread is running...");
+    }
+
+    public static void main(String[] args) {
+        // Creating a thread but not starting it
+        NewStateExample thread = new NewStateExample();
+        System.out.println("Thread state: " + thread.getState()); // Output: NEW
+    }
+}
+```
+
+---
+
+#### **2. RUNNABLE State**
+- When `start()` is called, the thread moves from **NEW → RUNNABLE** state.
+- It is now ready to run but waiting for CPU time.
+
+#### **Example:**
+```java
+class RunnableStateExample extends Thread {
+    public void run() {
+        System.out.println("Thread is running...");
+    }
+
+    public static void main(String[] args) {
+        RunnableStateExample thread = new RunnableStateExample();
+        thread.start(); // Now thread is in RUNNABLE state
+        System.out.println("Thread state: " + thread.getState()); // Output: RUNNABLE or TERMINATED
+    }
+}
+```
+
+---
+
+#### **3. BLOCKED State**
+- A thread enters the **BLOCKED** state if it tries to access a **synchronized method** locked by another thread.
+- It stays in this state until the lock is released.
+
+#### **Example:**
+```java
+class BlockedStateExample {
+    // Shared resource
+    synchronized void sharedMethod() {
+        System.out.println(Thread.currentThread().getName() + " is inside sharedMethod.");
+        try {
+            Thread.sleep(3000); // Simulating work
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+class ThreadA extends Thread {
+    BlockedStateExample obj;
+    ThreadA(BlockedStateExample obj) { this.obj = obj; }
+
+    public void run() {
+        obj.sharedMethod();
+    }
+}
+
+class ThreadB extends Thread {
+    BlockedStateExample obj;
+    ThreadB(BlockedStateExample obj) { this.obj = obj; }
+
+    public void run() {
+        obj.sharedMethod(); // Will be BLOCKED if ThreadA is inside this method
+    }
+}
+```
+
+---
+
+#### **4. WAITING State**
+- A thread goes into **WAITING** state when it calls `wait()`.
+- It waits **indefinitely** until another thread calls `notify()`.
+
+#### **Example:**
+```java
+class WaitingStateExample {
+    public static void main(String[] args) throws InterruptedException {
+        final Object lock = new Object();
+
+        Thread t1 = new Thread(() -> {
+            synchronized (lock) {
+                try {
+                    System.out.println("Thread going into WAITING state...");
+                    lock.wait(); // Thread enters WAITING state
+                    System.out.println("Thread resumed after notify...");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        t1.start();
+        Thread.sleep(1000);
+        System.out.println("Thread state: " + t1.getState()); // Output: WAITING
+
+        synchronized (lock) {
+            lock.notify(); // Notify t1 to resume
+        }
+    }
+}
+```
+
+---
+
+#### **5. TIMED_WAITING State**
+- A thread enters **TIMED_WAITING** state when it waits for a **fixed time** using:
+  - `Thread.sleep(time)`
+  - `wait(time)`
+  - `join(time)`
+
+#### **Example:**
+```java
+class TimedWaitingStateExample {
+    public static void main(String[] args) throws InterruptedException {
+        Thread t1 = new Thread(() -> {
+            try {
+                System.out.println("Thread going into TIMED_WAITING state...");
+                Thread.sleep(5000); // Thread enters TIMED_WAITING state
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+
+        t1.start();
+        Thread.sleep(1000);
+        System.out.println("Thread state: " + t1.getState()); // Output: TIMED_WAITING
+    }
+}
+```
+
+---
+
+#### **6. TERMINATED State**
+- A thread moves to **TERMINATED** state after completing execution.
+
+#### **Example:**
+```java
+class TerminatedStateExample extends Thread {
+    public void run() {
+        System.out.println("Thread is running...");
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        TerminatedStateExample thread = new TerminatedStateExample();
+        thread.start();
+        Thread.sleep(1000); // Ensure thread execution is completed
+        System.out.println("Thread state: " + thread.getState()); // Output: TERMINATED
+    }
+}
+```
+
+---
+
+#### **Summary of Thread States**
+| **State**           | **Description** |
+|--------------------|----------------|
+| **NEW**           | Thread created but not started. |
+| **RUNNABLE**      | Thread started and waiting for CPU. |
+| **BLOCKED**       | Thread waiting for a locked resource. |
+| **WAITING**       | Thread waiting indefinitely for another thread’s signal. |
+| **TIMED_WAITING** | Thread waiting for a fixed time (`sleep()`, `wait(time)`). |
+| **TERMINATED**    | Thread finished execution. |
+
+---
+
+#### **Conclusion**
+1. **Threads start in the NEW state.**  
+2. **Once started, they go to RUNNABLE.**  
+3. **If waiting for a lock, they go to BLOCKED.**  
+4. **If waiting indefinitely, they go to WAITING.**  
+5. **If waiting for a fixed time, they go to TIMED_WAITING.**  
+6. **When execution completes, they go to TERMINATED.**  
+---

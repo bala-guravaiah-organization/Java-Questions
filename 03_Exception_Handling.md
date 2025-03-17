@@ -1,14 +1,14 @@
 ## Exception Handling in Java
 
-## Question 1: What is an Exception and Exception Handling?
+#### What is an Exception and Exception Handling?
 
-### Answer:
+#### Answer:
 An **exception** is an event that **disrupts** the normal flow of a program. It is an **object** that is thrown at runtime.  
 **Exception Handling** is the process of **managing** these exceptions to ensure the program continues to run smoothly.
 
 ---
 
-### Example: Exception being thrown
+#### Example: Exception being thrown
 
 ```java
 public class ExceptionExample {
@@ -27,7 +27,7 @@ Exception in thread "main" java.lang.ArithmeticException: / by zero
 
 ---
 
-### Example: Exception Handling using `try-catch`
+#### Example: Exception Handling using `try-catch`
 
 ```java
 public class ExceptionHandlingExample {
@@ -51,16 +51,16 @@ Program continues...
 
 ---
 
-## Question 2: Difference between **Error** and **Exception**
+#### Difference between **Error** and **Exception**
 
-### **Error:**
+#### **Error:**
 - **Irrecoverable** and indicates serious issues.
 - Causes program **termination**.
 - **Examples:**  
   - `OutOfMemoryError` (Running out of memory)
   - `StackOverflowError` (Excessive recursion)
 
-### **Exception:**
+#### **Exception:**
 - **Recoverable** using **exception handling**.
 - **Examples:**  
   - `NullPointerException` (Accessing methods on `null`)
@@ -68,29 +68,29 @@ Program continues...
 
 ---
 
-## Question 3: Types of Exceptions
+#### Types of Exceptions
 
-### **1. Checked Exceptions**  
+#### **1. Checked Exceptions**  
 - Enforced by the **compiler** at **compile-time**.  
 - **Examples:** `IOException`, `SQLException`, `FileNotFoundException`
 
-### **2. Unchecked Exceptions**  
+#### **2. Unchecked Exceptions**  
 - Occur at **runtime** and are **not checked** by the compiler.  
 - **Examples:** `NullPointerException`, `ArithmeticException`, `ArrayIndexOutOfBoundsException`
 
 ---
 
-## Question 4: How is exception handling done in Java?
+#### How is exception handling done in Java?
 
 **Answer:**
 
 Exception handling in Java is done using the `try-catch` block. If you think that certain statements may throw an exception, surround them with a `try` block.
 
-### ✅ Key Points to Remember:
+#### ✅ Key Points to Remember:
 - A `try` block is always followed by a `catch` block, a `finally` block, or both.
 - You cannot use a `try` block alone.
 
-### Example:
+#### Example:
 ```java
 try {
     // Code that may throw an exception
@@ -104,29 +104,29 @@ try {
 }
 ```
 
-## Question 5: Can we write a try block without a catch block?
+#### Can we write a try block without a catch block?
 
 **Answer:**
 
 Yes, we can write a `try` block with a `finally` block, but we cannot write a `try` block alone.
 
-### ✅ Key Points to Remember:
+#### ✅ Key Points to Remember:
 - A `try` block must be followed by either a `catch` block, a `finally` block, or both.
 - If a `finally` block is present, it will always execute, even if an exception occurs.
 
-## Question 6: How to handle multiple exceptions together?
+#### Question 6: How to handle multiple exceptions together?
 
 **Answer:**
 
 You can write multiple `catch` blocks one after another for each exception, or you can write a single `catch` block using a pipe symbol (`|`) to separate the exceptions.
 
-### ✅ Key Rules to Remember:
+#### ✅ Key Rules to Remember:
 - Handle the **most specific exception first**, then move down to the most generic ones.
   - Example: You **cannot** handle `Exception` (the base class) before `FileNotFoundException`.
 - If your method throws multiple exceptions and you want to perform specific actions based on the exception thrown, use **multiple catch blocks**.
 - Use the **pipe (`|`) symbol** to handle multiple exceptions in a single catch block if they require the same handling.
 
-### Example using multiple catch blocks:
+#### Example using multiple catch blocks:
 ```java
 try {
     // Code that may throw multiple exceptions
@@ -141,7 +141,7 @@ try {
 }
 ```
 
-### Example using pipe (`|`) symbol:
+#### Example using pipe (`|`) symbol:
 ```java
 try {
     // Code that may throw multiple exceptions
@@ -152,7 +152,7 @@ try {
 }
 ```
 
-## Question 7: When will the finally block not get executed?
+#### When will the finally block not get executed?
 
 **Answer:**
 
@@ -160,18 +160,18 @@ The `finally` block will not execute in the following cases:
 - When `System.exit()` is called.
 - When the JVM crashes.
 
-## Question 8: Difference between `throw` and `throws` keyword & Exception Propagation
+#### Difference between `throw` and `throws` keyword & Exception Propagation
 
 **Answer:**
 
-### ✅ Key Differences Between `throw` and `throws`:
+#### ✅ Key Differences Between `throw` and `throws`:
 - `throw` is used to **explicitly throw an exception** inside a function or a block of code.
 - `throws` is used with the **method signature** to declare exceptions that might be thrown while executing the code.
 - `throw` is followed by an **instance** of an exception class, whereas `throws` is followed by **exception class names**.
 - You can throw **one exception at a time** using `throw`, but you can **declare multiple exceptions** using `throws`.
 - Using `throw`, only **unchecked exceptions** are propagated, whereas using `throws`, **both checked and unchecked exceptions** can be propagated.
 
-### Example:
+#### Example:
 #### Using `throw`:
 ```java
 public void checkAge(int age) {
@@ -191,17 +191,17 @@ public void readFile() throws IOException {
 }
 ```
 
-## Exception Propagation
+#### Exception Propagation
 
 **Answer:**
 
-### ✅ Key Points:
+#### ✅ Key Points:
 - An exception is first thrown from the top of the stack.
 - If it is not caught, it drops down the call stack to the previous method.
 - This continues until the exception is caught or reaches the bottom of the call stack.
 - This is called **Exception Propagation**.
 
-### Example of Exception Propagation:
+#### Example of Exception Propagation:
 ```java
 class Test {
     void method3() {
@@ -224,7 +224,7 @@ class Test {
 }
 ```
 
-### Checked Exceptions and Propagation:
+#### Checked Exceptions and Propagation:
 Checked exceptions are **not propagated** down the call chain by default. If you want to propagate them, you **must use the `throws` keyword**.
 
 #### Example of Checked Exception Propagation:
@@ -250,7 +250,7 @@ class TestCheckedException {
 }
 ```
 
-### Unchecked Exceptions and Propagation:
+#### Unchecked Exceptions and Propagation:
 Unchecked exceptions **are propagated by default**.
 
 #### Example of Unchecked Exception Propagation:
@@ -276,9 +276,9 @@ class TestUncheckedException {
 }
 ```
 
-## Question 9: Exception Handling with Method Overriding
+#### Exception Handling with Method Overriding
 
-### **Rules:**
+#### **Rules:**
 1. **If the parent class method does not declare an exception, the child class cannot throw a checked exception.**
    
    ```java
@@ -449,13 +449,13 @@ class TestUncheckedException {
 
 ---
 
-## Question 10: Programs related to Exception Handling and `return` keyword
+#### Programs related to Exception Handling and `return` keyword
 
-### ✅ Key Points to Remember:
+#### ✅ Key Points to Remember:
 - If you write anything after the `return` statement or `throw` exception statement, it will cause a **compile-time error** due to **unreachable code**.
 - In a `try-catch-finally` block, if the `finally` block contains a `return` statement, it will **override** any return values from the `try` or `catch` block.
 
-### Example Code:
+#### Example Code:
 ```java
 package com.tech;
 
@@ -478,12 +478,12 @@ public class DemoException {
 }
 ```
 
-### ✅ Expected Output:
+#### ✅ Expected Output:
 ```
 3
 ```
 
-### Explanation:
+#### Explanation:
 - The `try` block throws an `ArithmeticException`, skipping the `return 1;` statement.
 - The `catch` block catches the exception and returns `2`.
 - However, the `finally` block **always executes** and returns `3`, overriding the `catch` block's return value.
@@ -491,7 +491,7 @@ public class DemoException {
 
 ---
 
-## Program 2: `finally` block is always executed
+#### `finally` block is always executed
 ```java
 package com.tech;
 
@@ -515,7 +515,7 @@ public class DemoException {
 
 ---
 
-## Program 3: Program execution returns from the `finally` block
+#### Program execution returns from the `finally` block
 ```java
 public class DemoException {
     public static int method1() {
@@ -538,7 +538,7 @@ public class DemoException {
 
 ---
 
-## Program 4: Exception thrown inside `try`, but overridden by `finally`
+#### Exception thrown inside `try`, but overridden by `finally`
 ```java
 public class DemoException {
     public static int method1() {
@@ -561,7 +561,7 @@ public class DemoException {
 
 ---
 
-## Program 5: Exception thrown inside `try`, handled in `catch`
+#### Exception thrown inside `try`, handled in `catch`
 ```java
 public class DemoException {
     public static int method1() {
@@ -580,15 +580,15 @@ public class DemoException {
 }
 ```
 
-## Question 11: How to make your own custom exception class?
+#### How to make your own custom exception class?
 
-### ✅ Key Points to Remember:
+#### ✅ Key Points to Remember:
 - In Java, you can create a **custom exception class** by extending the `Exception` class.
 - If you extend `Exception`, it becomes a **checked exception**.
 - If you extend `RuntimeException`, it becomes an **unchecked exception**.
 - Always provide a meaningful message in the constructor.
 
-### Example Code:
+#### Example Code:
 ```java
 // Creating a custom exception by extending Exception class
 class CustomException extends Exception {
@@ -617,20 +617,20 @@ public class CustomExceptionDemo {
 }
 ```
 
-### ✅ Expected Output:
+#### ✅ Expected Output:
 ```
 Exception caught: Age must be 18 or above.
 ```
 
 ---
 
-## Question 12: What happens when you throw an exception from the `finally` block?
+#### What happens when you throw an exception from the `finally` block?
 
-### ✅ Key Points to Remember:
+#### ✅ Key Points to Remember:
 - When an exception is thrown from the `finally` block, it **takes precedence** over exceptions thrown from the `try` or `catch` block.
 - This means any previously thrown exceptions from `try` or `catch` **get suppressed**, and the exception from `finally` is propagated.
 
-### Example Code:
+#### Example Code:
 ```java
 public class FinallyExceptionDemo {
     public static void method() throws Exception {
@@ -653,16 +653,16 @@ public class FinallyExceptionDemo {
 }
 ```
 
-### ✅ Expected Output:
+#### ✅ Expected Output:
 ```
 Caught: Exception from finally block
 ```
 
 ---
 
-## Question 13: Output of the following `try-catch-finally` program
+#### What is the Output of the following `try-catch-finally` program
 
-### Example Code:
+#### Example Code:
 ```java
 class MyException1 extends Exception { }
 class MyException2 extends Exception { }
@@ -697,7 +697,7 @@ public class DemoException {
 }
 ```
 
-### ✅ Expected Output:
+#### ✅ Expected Output:
 ```
 1
 5
@@ -707,7 +707,7 @@ public class DemoException {
 Exception in thread "main" MyException1
 ```
 
-### Explanation:
+#### Explanation:
 - Execution starts in `main()` and prints `1`.
 - `method1()` is called, which prints `5` and throws `MyException1`.
 - The `catch` block catches `MyException1`, prints `6`, and throws `MyException2`.
@@ -716,14 +716,14 @@ Exception in thread "main" MyException1
 
 ---
 
-## Question 14: Explain `try-with-resources`
+#### Explain `try-with-resources`
 
-### ✅ Key Points to Remember:
+#### ✅ Key Points to Remember:
 - Introduced in **Java 7**, `try-with-resources` ensures that resources (like files, sockets, or database connections) are **automatically closed**.
 - The resources **must implement the `AutoCloseable` interface**.
 - This helps **avoid memory leaks** and **simplifies exception handling**.
 
-### Syntax:
+#### Syntax:
 ```java
 try (ResourceType resource = new ResourceType()) {
     // Use resource
@@ -732,7 +732,7 @@ try (ResourceType resource = new ResourceType()) {
 }
 ```
 
-### Example Code:
+#### Example Code:
 ```java
 import java.io.*;
 
@@ -750,28 +750,28 @@ public class TryWithResourcesDemo {
 }
 ```
 
-### ✅ Expected Output (if `test.txt` contains "Hello World"):
+#### ✅ Expected Output (if `test.txt` contains "Hello World"):
 ```
 Hello World
 ```
 
-### Explanation:
+#### Explanation:
 - `BufferedReader` is declared inside the `try` block.
 - Once the `try` block finishes, the `BufferedReader` **automatically closes**, even if an exception occurs.
 - No need to explicitly call `br.close()`. Java handles it internally.
 
 ---
 
-## Question 15: Exception Hierarchy in Java
+#### Exception Hierarchy in Java
 
-### ✅ Key Points to Remember:
+#### ✅ Key Points to Remember:
 - All exceptions in Java **extend from `Throwable`**.
 - `Throwable` has two direct subclasses:
   - `Exception` (Checked exceptions)
   - `Error` (Serious system failures)
 - `RuntimeException` is a subclass of `Exception` (Unchecked exceptions).
 
-### Exception Hierarchy Diagram:
+#### Exception Hierarchy Diagram:
 ```
 Throwable
 │
@@ -788,7 +788,7 @@ Throwable
     ├── OutOfMemoryError
 ```
 
-### Explanation:
+#### Explanation:
 - **Checked exceptions** (`IOException`, `SQLException`) **must be handled**.
 - **Unchecked exceptions** (`NullPointerException`, `ArithmeticException`) **do not need explicit handling**.
 - **Errors** (`StackOverflowError`, `OutOfMemoryError`) indicate system-level failures.

@@ -1,12 +1,12 @@
 
-## **Question 42: Explain System.out.println() statement**
+#### **Explain System.out.println() statement**
 
 **Answer:**
 - `System` is a class in the `java.lang` package.
 - `out` is a static member of the `System` class and an instance of `java.io.PrintStream`.
 - `println()` is a method of the `PrintStream` class, which is used to print messages to the console with a newline.
 
-### **Example:**
+#### **Example:**
 
 ```java
 public class PrintlnExample {
@@ -29,16 +29,16 @@ true
 
 ---
 
-## **Question 43: Explain Auto-boxing and Un-boxing**
+#### Explain Auto-boxing and Un-boxing**
 
 **Answer:**
 In Java 1.5, Auto-boxing and Un-boxing were introduced to automatically convert primitive types to their corresponding wrapper classes and vice versa.
 
-### **Key Points:**
+#### **Key Points:**
 - **Auto-boxing:** Conversion of a primitive type into its corresponding wrapper class.
 - **Un-boxing:** Conversion of a wrapper class object back into a primitive type.
 
-### **Example:**
+#### **Example:**
 
 ```java
 public class BoxingExample {
@@ -62,23 +62,23 @@ Auto-boxing: 10
 Un-boxing: 20
 ```
 
-**Question 46: Explain static keyword in Java**
+**Explain static keyword in Java**
 
 **Answer:** In Java, a `static` member is a member of a class that isn’t associated with an instance of a class. Instead, the member belongs to the class itself.
 
-### Static is applicable for:
+#### Static is applicable for:
 - **Variable**
 - **Method**
 - **Block**
 - **Nested class**
 
-### **Static Variable:**
+#### **Static Variable:**
 - If a variable is declared as `static`, it is known as a *static variable*.
 - **Only one copy** of the variable is created and shared among all instances of the class.
 - The static variable gets memory **only once** in the class area when the class is loaded.
 - **Use case:** Declare common properties for all objects, e.g., company name of employees.
 
-### **Static Method:**
+#### **Static Method:**
 - A method declared with the `static` keyword belongs to the class rather than to any object.
 - **Access directly** using the class name without creating an object.
 - **Rules:**
@@ -86,27 +86,27 @@ Un-boxing: 20
   - Cannot use `this` or `super` inside a static method.
 - **Example:** The `main()` method is static, allowing Java to start an application without creating an object.
 
-### **Static Block:**
+#### **Static Block:**
 - Executed **once** when the class is loaded.
 - Used to initialize **static variables**.
 
-### **Static Nested Classes:**
+#### **Static Nested Classes:**
 - A special type of **inner class** where the inner class is static.
 - Can **only access static members** of the outer class.
 - **Advantage:** Improves code readability and maintainability.
 - Unlike normal inner classes, **a static nested class can exist without an instance of the outer class**.
 
-### **How to create an object of a static inner class?**
+#### **How to create an object of a static inner class?**
 ```java
 OuterClass.StaticNestedClass nestedClassObject = new OuterClass.StaticNestedClass();
 ```
 
-### **Error Scenario:**
+#### **Error Scenario:**
 - **Compile-time error occurs** when trying to access a **non-static** member inside a static nested class.
 
 ---
 
-### **Example: Using Inner Class Object**
+#### **Example: Using Inner Class Object**
 ```java
 class OuterClass {
     static class StaticNestedClass {
@@ -125,7 +125,7 @@ class OuterClass {
 Static Nested Class Method
 ```
 
-### **Example: Static Members in Static Inner Class**
+#### **Example: Static Members in Static Inner Class**
 ```java
 class OuterClass {
     static class StaticNestedClass {
@@ -143,22 +143,22 @@ class OuterClass {
 Static method in static nested class
 ```
 
-**Question 47: What is an Inner Class in Java, how it can be instantiated, and what are the types of Inner Classes?**
+**What is an Inner Class in Java, how it can be instantiated, and what are the types of Inner Classes?**
 
 **Answer:** In Java, when you define one **non-static** class within another class, it is called an **Inner Class (Nested Class)**. Inner classes allow logically grouping classes that are only used in one place, thereby increasing encapsulation and making the code more readable and maintainable.
 
-### **Key Points about Inner Classes:**
+#### **Key Points about Inner Classes:**
 - An **inner class is associated with the object** of the outer class and can access all variables and methods of the outer class.
 - **Static variables and static methods are not allowed** in non-static inner classes since they are associated with instances.
 - To create an **instance of an inner class**, an instance of the outer class is required first.
 
-### **Types of Inner Classes:**
+#### **Types of Inner Classes:**
 1. **Member Inner Class** (Regular Inner Class)
 2. **Static Nested Class**
 3. **Method-local Inner Class**
 4. **Anonymous Inner Class**
 
-### **How to instantiate an Inner Class?**
+#### **How to instantiate an Inner Class?**
 ```java
 OuterClass outerObject = new OuterClass();
 OuterClass.InnerClass innerObject = outerObject.new InnerClass();
@@ -166,7 +166,7 @@ OuterClass.InnerClass innerObject = outerObject.new InnerClass();
 
 ---
 
-### **Example: Member Inner Class**
+#### **Example: Member Inner Class**
 ```java
 class OuterClass {
     private String message = "Hello from Outer Class";
@@ -189,7 +189,7 @@ class OuterClass {
 Hello from Outer Class
 ```
 
-### **Example: Compile-time error when static variable/method is present in Inner Class**
+#### **Example: Compile-time error when static variable/method is present in Inner Class**
 ```java
 class OuterClass {
     class InnerClass {
@@ -207,7 +207,7 @@ Inner classes cannot have static members.
 
 ---
 
-## **Special Types of Inner Classes:**
+#### **Special Types of Inner Classes:**
 ### **1. Local Inner Class:**
 - Defined **inside a block**, usually within a method, loop, or if clause.
 - **Not a member of the enclosing class** but belongs to the block it is defined in.
@@ -266,7 +266,7 @@ class OuterClass {
 
 ---
 
-### **2. Anonymous Inner Class:**
+#### **2. Anonymous Inner Class:**
 - A **class without a name**.
 - Used when you need a class only **once**.
 - **Cannot have a constructor** since it has no class name.
@@ -368,11 +368,11 @@ class Test {
 }
 ```
 
-### **What is Variable Shadowing and Variable Hiding in Java?**
+#### **What is Variable Shadowing and Variable Hiding in Java?**
 
 #### **Answer:**
 
-### **1. Variable Shadowing**
+#### **1. Variable Shadowing**
 Variable shadowing occurs when a **local variable** inside a method has the **same name** as an instance variable. The local variable **shadows** the instance variable inside the method block.
 
 #### **Example of Variable Shadowing:**
@@ -402,7 +402,7 @@ If you want to access the instance variable, you can do so using the **`this`** 
 
 ---
 
-### **2. Variable Hiding**
+#### **2. Variable Hiding**
 Variable hiding occurs when **both the parent and child classes** have a variable with the **same name**. The child class variable hides the parent class variable.
 
 #### **Example of Variable Hiding:**
@@ -436,7 +436,7 @@ If you want to access the parent class variable, you can do this using the **`su
 
 ---
 
-### **Difference Between Variable Hiding and Method Overriding**
+#### **What is the Difference Between Variable Hiding and Method Overriding**
 - **Variable hiding** is **not** the same as **method overriding**.
 - In **method overriding**, the overridden method **replaces** the inherited method.
 - In **variable hiding**, the child class **hides** the inherited variable instead of replacing it.
@@ -474,7 +474,7 @@ x: 10
 
 ---
 
-### **Key Differences:**
+#### **Key Differences:**
 | Feature             | Variable Hiding | Method Overriding |
 |---------------------|----------------|-------------------|
 | Applies To         | Variables       | Methods          |
@@ -482,7 +482,7 @@ x: 10
 | Inheritance        | Yes             | Yes              |
 | Behavior           | Parent variable is hidden, not replaced | Parent method is replaced |
 
-### **Question 53: Explain enum in Java**
+#### Explain enum in Java**
 
 #### **Answer:**
 An **enum** in Java is a special data type that contains a **fixed set of constants**. Enums improve **type safety** and can also have **fields, methods, and constructors**.
@@ -507,7 +507,7 @@ An **enum** in Java is a special data type that contains a **fixed set of consta
 
 ---
 
-### **Example 1: Basic Enum Usage**
+#### **Example 1: Basic Enum Usage**
 ```java
 enum Day {
     SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY;
@@ -527,7 +527,7 @@ Today is: SATURDAY
 
 ---
 
-### **Example 2: Enum with Fields, Methods, and Constructor**
+#### **Example 2: Enum with Fields, Methods, and Constructor**
 ```java
 enum Color {
     RED("#FF0000"), GREEN("#00FF00"), BLUE("#0000FF");
@@ -558,7 +558,7 @@ Color: RED, Hex Code: #FF0000
 
 ---
 
-### **Example 3: Using Enum in a Switch Statement**
+#### **Example 3: Using Enum in a Switch Statement**
 ```java
 enum Level {
     LOW, MEDIUM, HIGH;
@@ -589,7 +589,7 @@ High level
 
 ---
 
-### **Example 4: Using `values()`, `ordinal()`, and `valueOf()` Methods**
+#### **Example 4: Using `values()`, `ordinal()`, and `valueOf()` Methods**
 ```java
 enum Size {
     SMALL, MEDIUM, LARGE;
@@ -618,7 +618,7 @@ Selected Size: MEDIUM
 
 ---
 
-### **Example 5: Enum Implementing an Interface**
+#### **Example 5: Enum Implementing an Interface**
 ```java
 interface Printable {
     void print();
@@ -646,7 +646,7 @@ Status: SUCCESS
 Status: FAILURE
 ```
 
-### Question 54: What is Cloneable?
+#### What is Cloneable?
 
 #### **Answer:**
 `Cloneable` is an interface in Java that must be implemented by a class to allow its objects to be cloned.
@@ -654,7 +654,7 @@ Status: FAILURE
 - A class implements the `Cloneable` interface to indicate to the `Object.clone()` method that it is legal to make a field-for-field copy of instances of that class.
 - If you try to clone an object that does not implement the `Cloneable` interface, it will throw `CloneNotSupportedException`.
 
-### **Example Without Implementing Cloneable Interface:**
+#### **Example Without Implementing Cloneable Interface:**
 ```java
 class Employee {
     int id;
@@ -680,7 +680,7 @@ public class TestClone {
 
 ---
 
-### **Implementing Cloneable Interface:**
+#### **Implementing Cloneable Interface:**
 ```java
 class Employee implements Cloneable {
     int id;
@@ -711,7 +711,7 @@ public class TestClone {
 
 ---
 
-### **Shallow Copy vs Deep Copy:**
+#### **Shallow Copy vs Deep Copy:**
 If a class contains object references (other than primitive types), `Object.clone()` performs a **shallow copy**, meaning it copies the references instead of creating new objects.
 
 **Example with Shallow Copy:**
@@ -797,7 +797,7 @@ public class TestClone {
 }
 ```
 
-### **Key Differences Between Shallow and Deep Copy:**
+#### **Key Differences Between Shallow and Deep Copy:**
 | Feature          | Shallow Copy | Deep Copy |
 |-----------------|-------------|-----------|
 | Copy Type       | Copy of reference | Copy of actual object |
@@ -806,7 +806,7 @@ public class TestClone {
 
 ---
 
-### **Cross-questions You Might Face:**
+#### **Cross-questions You Might Face:**
 1. **What happens if a class does not implement `Cloneable` but calls `clone()`?**  
    → It throws `CloneNotSupportedException`.
 2. **How can you achieve cloning if a class does not implement `Cloneable`?**  
@@ -820,14 +820,14 @@ public class TestClone {
 
 This document explains `Cloneable` with examples, covering **shallow copy vs deep copy**. Let me know if you need further clarifications!
 
-# Deep Copy in Java
+#### Deep Copy in Java
 
 Deep copying in Java ensures that a cloned object has a completely independent copy of its fields, including any referenced objects. Here, we discuss two methods to perform deep copying:
 
-## 1. Using Serialization
+### 1. Using Serialization
 This approach serializes the original object into a byte stream and then deserializes it to create a deep copy.
 
-### Example:
+#### Example:
 ```java
 import java.io.*;
 
@@ -873,10 +873,10 @@ public class DeepCopyExample {
 }
 ```
 
-## 2. Using Apache Commons Lang (`SerializationUtils.clone()`)
+#### 2. Using Apache Commons Lang (`SerializationUtils.clone()`)
 Apache Commons Lang provides an easier way to perform deep copying via `SerializationUtils.clone()`. All involved classes must implement `Serializable`.
 
-### Example:
+#### Example:
 ```java
 import org.apache.commons.lang3.SerializationUtils;
 import java.io.Serializable;
@@ -913,7 +913,7 @@ public class DeepCopyApacheExample {
 }
 ```
 
-### Maven Dependency:
+#### Maven Dependency:
 To use Apache Commons Lang, add this dependency in your `pom.xml`:
 ```xml
 <dependency>
@@ -923,7 +923,7 @@ To use Apache Commons Lang, add this dependency in your `pom.xml`:
 </dependency>
 ```
 
-## Conclusion
+#### Conclusion
 Both methods provide a deep copy, ensuring that changes in the copied object do not affect the original.
 - **Serialization** is built-in but requires manual handling.
 - **Apache Commons Lang** simplifies deep copying but requires an external dependency.

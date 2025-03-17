@@ -1,7 +1,7 @@
-## **What is stream Processing?**
+#### **What is stream Processing?**
 Stream processing is a method of handling data as a continuous sequence of elements. Instead of processing data in bulk, it allows for efficient and real-time operations.
 
-### **Key Concepts:**
+#### **Key Concepts:**
 1. **Definition of Stream Processing**  
    - A **stream** is a sequence of data items that are processed one at a time.
 
@@ -13,19 +13,19 @@ Stream processing is a method of handling data as a continuous sequence of eleme
    - The **output stream** of one program can serve as the **input stream** of another.  
 ---
 
-### **What Are Streams?**
+#### **What Are Streams?**
 Streams are an update to the Java API that allow you to manipulate collections of data in a **declarative way**. Instead of coding an **ad hoc implementation**, you express a **query** to process the data efficiently.
 
 you can think of streams as **fancy iterators** over a collection of data.
 
 
-# Java 7 vs Java 8: Stream Processing
+#### Java 7 vs Java 8: Stream Processing
 
-## **Java 7 Approach**
+#### **Java 7 Approach**
 In Java 7, filtering, sorting, and mapping a list required explicit loops and anonymous classes.
 
-### **Code Example (Java 7)**
-### **Dish Class**
+#### **Code Example (Java 7)**
+#### **Dish Class**
 ```java
 public class Dish {
     private String name;
@@ -74,17 +74,17 @@ public class Java7Example {
     }
 }
 ```
-### **Steps in Java 7 Approach:**
+#### **Steps in Java 7 Approach:**
 1. **Filter** dishes with calories below 400.
 2. **Sort** them using an anonymous class.
 3. **Map** them to their names manually.
 
 ---
 
-### **Java 8 Approach (Using Streams)**
+#### **Java 8 Approach (Using Streams)**
 Java 8 introduced the **Stream API**, which simplifies filtering, sorting, and mapping operations.
 
-### **Code Example (Java 8)**
+#### **Code Example (Java 8)**
 ```java
 import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.toList;
@@ -100,7 +100,7 @@ public class Java8Example {
 }
 ```
 
-### **Advantages of Java 8 Streams:**
+#### **Advantages of Java 8 Streams:**
 1. **Declarative approach** – No need for explicit loops. Specify what you want to acheive as oppsed to implement an operation(using for loop and if blocks).
 2. **Improved readability** – Code is more concise and expressive.
 3. **Better performance** – Streams can be parallelized easily.
@@ -108,8 +108,7 @@ public class Java8Example {
 
 ---
 
-### **What are the differences between streams and collections**
-### **Key Differences:**
+#### **What are the differences between streams and collections**
 
 | Feature           | Collections | Streams |
 |------------------|------------|---------|
@@ -119,7 +118,7 @@ public class Java8Example {
 | **Modification** | Allows adding/removing elements | Immutable (cannot modify the source) |
 | **Parallel Processing** | Requires manual handling (e.g., ForkJoinPool) | Easily parallelized using `parallelStream()` |
 
-### **Real-World Example:**
+#### **Real-World Example:**
 - A **collection** is like a DVD, where all data is stored before watching.
 - A **stream** is like a video being streamed online, where frames are loaded only when needed.
 
@@ -134,14 +133,14 @@ s.forEach(System.out::println); // Throws IllegalStateException
 
 ---
 
-### what is External vs. Internal Iteration in Java ?
+#### what is External vs. Internal Iteration in Java ?
 
-### **1. External Iteration (Java 7 and Earlier)**
+#### **1. External Iteration (Java 7 and Earlier)**
 
 ### **Definition:**
 External iteration is when the programmer explicitly controls how data is iterated, typically using loops or iterators.
 
-### **Example: Using for-each Loop (Java 7)**
+#### **Example: Using for-each Loop (Java 7)**
 ```java
 List<String> names = new ArrayList<>();
 for (Dish dish : menu) {                  
@@ -150,7 +149,7 @@ for (Dish dish : menu) {
 ```
 ✅ **Explicitly iterates over `menu` and extracts names manually.**
 
-### **Example: Using Iterator (Java 7)**
+#### **Example: Using Iterator (Java 7)**
 ```java
 List<String> names = new ArrayList<>();
 Iterator<Dish> iterator = menu.iterator();
@@ -161,19 +160,18 @@ while (iterator.hasNext()) {
 ```
 ✅ **Manually manages iteration using an iterator.**
 
-### **Disadvantages of External Iteration:**
+#### **Disadvantages of External Iteration:**
 - **Verbose**: Requires manual iteration, making code longer.
 - **Difficult to parallelize**: Cannot easily leverage multi-core processors.
 - **Error-prone**: More chances for mistakes in iteration logic.
 
 ---
 
-### **2. Internal Iteration (Java 8 Streams)**
+#### **2. Internal Iteration (Java 8 Streams)**
 
-### **Definition:**
 Internal iteration delegates iteration logic to the **Stream API**, making code more declarative and concise.
 
-### **Example: Using Streams (Java 8)**
+#### **Example: Using Streams (Java 8)**
 ```java
 List<String> names = menu.stream()
                          .map(Dish::getName)  
@@ -181,7 +179,7 @@ List<String> names = menu.stream()
 ```
 ✅ **Streams handle iteration automatically, reducing boilerplate code.**
 
-### **Advantages of Internal Iteration:**
+#### **Advantages of Internal Iteration:**
 - **Concise & Readable**: No need for explicit loops.
 - **Optimized Execution**: Java handles iteration efficiently.
 - **Easier Parallel Processing**: Just use `.parallelStream()`.
@@ -189,7 +187,7 @@ List<String> names = menu.stream()
 ---
 
 
-### **3. Comparison Table: External vs. Internal Iteration**
+#### **3. Comparison Table: External vs. Internal Iteration**
 
 | Feature               | External Iteration (Java 7) | Internal Iteration (Java 8) |
 |----------------------|----------------------|----------------------|
@@ -200,17 +198,17 @@ List<String> names = menu.stream()
 | **Readability**     | Imperative and lengthy | Functional and declarative |
 
 ---
-### What are Java 8 Stream Operations
+#### What are Java 8 Stream Operations
 
 The `Stream` interface in `java.util.stream` defines many operations, classified into two categories:
 - **Intermediate Operations**: These return another stream and allow method chaining.
 - **Terminal Operations**: These produce a final result or side effect and close the stream.
 ---
 
-### **Intermediate Operations**
+#### **Intermediate Operations**
 Intermediate operations return another stream and are **lazy**, meaning they are not executed until a terminal operation is invoked.
 
-### **Example of Intermediate Operations**
+#### **Example of Intermediate Operations**
 ```java
 List<String> names = menu.stream()
         .filter(dish -> {
@@ -237,10 +235,10 @@ Mapping: chicken
 - Only the first three dishes are selected due to **short-circuiting**.
 ---
 
-### **Terminal Operations**
+#### **Terminal Operations**
 Terminal operations consume the stream and produce a final result, such as a `List`, `Integer`, or even `void`.
 
-### **Example:**
+#### **Example:**
 ```java
 long count = menu.stream()
                  .filter(dish -> dish.getCalories() > 300)
@@ -249,7 +247,7 @@ long count = menu.stream()
                  .count(); // Terminal operation
 ```
 ---
-### What are the Differences Between Intermediate and Terminal Operations
+#### What are the Differences Between Intermediate and Terminal Operations
 
 | Feature               | Intermediate Operations        | Terminal Operations          |
 |-----------------------|--------------------------------|------------------------------|
@@ -263,9 +261,9 @@ long count = menu.stream()
 
 ---
 
-### **Comparison: Intermediate vs. Terminal Operations**
+#### **Comparison: Intermediate vs. Terminal Operations**
 
-### **Table 1: Intermediate Operations**
+#### **Table 1: Intermediate Operations**
 | Operation | Type | Return Type | Function Descriptor |
 |-----------|------|-------------|---------------------|
 | `filter`  | Intermediate | `Stream<T>` | `Predicate<T>` → `boolean` |
@@ -274,7 +272,7 @@ long count = menu.stream()
 | `sorted`  | Intermediate | `Stream<T>` | `Comparator<T>` → `(T, T) -> int` |
 | `distinct` | Intermediate | `Stream<T>` | - |
 
-### **Table 2: Terminal Operations**
+#### **Table 2: Terminal Operations**
 | Operation | Type | Return Type | Purpose |
 |-----------|------|-------------|---------|
 | `forEach` | Terminal | `void` | Consumes each element and applies a lambda function. |

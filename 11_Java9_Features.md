@@ -1,10 +1,10 @@
-## Java 9 Streams: Slicing a Stream
+#### Java 9 Streams: Slicing a Stream
 
 Java 9 introduced two new methods, `takeWhile` and `dropWhile`, to efficiently slice streams based on a predicate. These methods provide an optimized way to select or ignore elements without processing the entire stream, which is useful for handling large or infinite streams.
 
 ---
 
-## 1. Slicing Using a Predicate
+#### 1. Slicing Using a Predicate
 
 ### `takeWhile` Method
 The `takeWhile` method selects elements from a stream as long as they satisfy a given predicate. It stops processing once it encounters the first element that does not match the predicate.
@@ -42,7 +42,7 @@ Here, the stream stops processing as soon as it encounters "rice" (which has 350
 
 ---
 
-### `dropWhile` Method
+#### `dropWhile` Method
 The `dropWhile` method discards elements at the beginning of the stream while they match the given predicate. Once an element fails the predicate, all subsequent elements are included in the stream.
 
 #### Example:
@@ -62,7 +62,7 @@ Here, elements are dropped while their calories are less than 320. Once "rice" (
 
 ---
 
-## 2. Key Differences Between `takeWhile` and `dropWhile`
+#### What are the Differences Between `takeWhile` and `dropWhile`
 
 | Feature           | `takeWhile` | `dropWhile` |
 |------------------|------------|------------|
@@ -72,7 +72,7 @@ Here, elements are dropped while their calories are less than 320. Once "rice" (
 
 ---
 
-### Summary
+#### Summary
 - **`takeWhile`** extracts elements from a stream until a condition is met.
 - **`dropWhile`** removes elements from a stream until a condition is met.
 - Both are **efficient** and help in processing large streams.
