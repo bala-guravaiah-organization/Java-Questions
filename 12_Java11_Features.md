@@ -38,7 +38,7 @@ The `java` command **compiles and executes** the program internally.
 
 ---
 
-#### 🔹 Example Usage
+#### Example Usage
 ```java
 // Test.java
 public class Test {
@@ -61,7 +61,7 @@ Hello, Java 11!
 
 Java 11 introduced several useful methods for the `String` class to simplify common operations.
 
-#### 🔹 `repeat(int count)`
+#### `repeat(int count)`
 - Returns a new string where the original string is repeated **`count`** times.
 - If a **negative value** is provided, it throws an `IllegalArgumentException`.
 - If the resulting string length exceeds the maximum allowed size, it may throw an **OutOfMemoryError**.
@@ -82,7 +82,7 @@ Hello Hello Hello
 
 ---
 
-#### 🔹 `isBlank()`
+#### `isBlank()`
 - Returns `true` if the string is empty or contains **only whitespace characters**.
 
 #### Example:
@@ -102,7 +102,7 @@ public class IsBlankExample {
 
 ---
 
-#### 🔹 `strip()`
+#### `strip()`
 - Works like `trim()`, **removes leading and trailing spaces**, but it is **Unicode-aware**.
 
 #### Example:
@@ -121,7 +121,7 @@ public class StripExample {
 
 ---
 
-#### 🔹 `stripLeading()`
+#### `stripLeading()`
 - Removes **only leading spaces** from the string.
 
 #### Example:
@@ -139,7 +139,7 @@ public class StripLeadingExample {
 ```
 ---
 
-#### 🔹 `stripTrailing()`
+#### `stripTrailing()`
 - Removes **only trailing spaces** from the string.
 
 #### Example:
@@ -157,7 +157,7 @@ public class StripTrailingExample {
 ```
 #### Difference Between `strip()` and `trim()`
 
-#### 🔹 Key Differences
+#### Key Differences
 | Method   | Behavior |
 |----------|----------|
 | **`trim()`**  | Removes only characters **≤ U+0020 (space)**. |
@@ -174,7 +174,7 @@ public class StripTrailingExample {
 
 ---
 
-#### 🔹 Example Comparison
+#### Example Comparison
 ```java
 public class StripVsTrimExample {
     public static void main(String[] args) {
@@ -208,7 +208,7 @@ public class StripVsTrimExample {
 
 ---
 
-#### 🔹 Example Usage
+#### Example Usage
 ```java
 import java.util.stream.Stream;
 
@@ -242,7 +242,7 @@ Java
 - Java 11 introduced a new **default method** `toArray()` in the **Collection** interface.
 - This method uses a **functional interface** to convert collections into arrays in a more flexible way.
 
-#### 🔹 Example Usage
+#### Example Usage
 ```java
 import java.util.*;
 
@@ -274,7 +274,7 @@ public class ToArrayExample {
   - **`readString(Path path)`** → Reads all file content into a string.
   - **`writeString(Path path, CharSequence csq, OpenOption... options)`** → Writes text to a file.
 
-#### 🔹 Example Usage
+#### Example Usage
 ```java
 import java.nio.file.*;
 import java.io.IOException;
@@ -309,7 +309,7 @@ File Content: Java 11 features
   (@NotNull var str) -> "$" + str;
   ```
 
-#### 🔹 Local-Variable Type Inference Recap
+#### Local-Variable Type Inference Recap
 - Java 10 introduced **local-variable type inference**, allowing `var` instead of explicit types.
 - Example:
   ```java
@@ -325,7 +325,7 @@ File Content: Java 11 features
   2. **Cannot be used for method/constructor parameters**.
   3. **Compiler infers data type** based on assigned value.
 
-#### 🔹 `var` in Lambda Expressions (Java 11 Feature)
+#### `var` in Lambda Expressions (Java 11 Feature)
 - Java 11 **allows `var`** in **lambda parameters**.
 - Useful when **annotations are needed**.
 
@@ -344,7 +344,7 @@ File Content: Java 11 features
    (var s1) -> s1; // ✅ Valid
    ```
 
-#### 🔹 Example Usage:
+#### Example Usage:
 ```java
 import java.util.*;
 
@@ -378,7 +378,7 @@ LAMBDA
 - It **simplifies** the process of negating conditions compared to the older `negate()` method.
 - `Predicate.not()` can be **used with method references**, making code cleaner and more readable.
 
-#### 🔹 Syntax:
+#### Syntax:
 ```java
 static <T> Predicate<T> not(Predicate<? super T> target)
 ```
@@ -400,7 +400,7 @@ public class PredicateNegateExample {
     }
 }
 ```
-#### 🔹 Output:
+#### Output:
 ```
 false
 true
@@ -427,7 +427,7 @@ public class PredicateNotExample {
     }
 }
 ```
-#### 🔹 Output:
+#### Output:
 ```
 [Java, Spring]
 ```
@@ -448,7 +448,7 @@ public class PredicateNotExample {
 - The enhanced `HttpClient` API was initially introduced as an **experimental feature** in Java 9 but became **standard** in Java 11.
 - It is now **recommended** over other HTTP client APIs, offering built-in support without requiring external dependencies.
 
-#### 🔹 Key Features
+#### Key Features
 - **Asynchronous and Synchronous request handling**
 - **Support for HTTP/1.1 and HTTP/2**
 - **WebSocket support**
@@ -460,7 +460,7 @@ public class PredicateNotExample {
 2. **Create an HttpRequest instance** using `HttpRequest.newBuilder()`.
 3. **Send the request** using `httpClient.send()` and retrieve the response object.
 
-#### 🔹 Example Usage
+#### Example Usage
 #### 🌐 Sending a GET Request
 ```java
 import java.net.http.*;
@@ -508,11 +508,11 @@ Response Body: {
 
 #### Asynchronous HTTP Client in Java 11
 
-#### 🔹 Making Asynchronous HTTP Calls
+#### Making Asynchronous HTTP Calls
 - Java 11 provides the **`sendAsync()`** method in `HttpClient` to perform asynchronous HTTP requests.
 - This method returns a **`CompletableFuture<HttpResponse<T>>`**, allowing non-blocking execution.
 
-#### 🔹 Example Usage:
+#### Example Usage:
 ```java
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -596,7 +596,7 @@ Response Body: {
 #### 📌 Making an Asynchronous POST Request
 For non-blocking operations, you can use `HttpClient`'s asynchronous capabilities with `sendAsync()`.
 
-#### 🔹 Example Usage
+#### Example Usage
 ```java
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -637,12 +637,12 @@ public class AsyncPostRequest {
 - **Better performance**: Useful for high-throughput applications.
 - **Uses `CompletableFuture`**: Enables chaining and handling responses efficiently.
 
-#### 🔹 What is Nest-Based Access Control?
+#### What is Nest-Based Access Control?
 Java 11 introduced **nest-based access control**, allowing nested classes to access each other's **private members** without requiring accessibility-broadening bridge methods. This feature enhances **security**, **reduces bytecode size**, and **improves performance**.
 
 ---
 
-#### 🔹 What are Nested Classes in Java?
+#### What are Nested Classes in Java?
 Java supports four types of nested classes:
 1. **Static Nested Classes** - Independent of the outer class.
 2. **Non-static Nested Classes (Inner Classes)** - Have access to outer class members.
@@ -651,12 +651,12 @@ Java supports four types of nested classes:
 
 ---
 
-#### 🔹 What is the Role of Nestmates in Java 11?
+#### What is the Role of Nestmates in Java 11?
 **Nestmates** are classes that belong to the same **nest** (i.e., a primary class and its nested classes). Java 11 introduced **NestHost** and **NestMembers** attributes to allow **direct access** to private members without requiring synthetic bridge methods.
 
 ---
 
-#### 🔹 Why was Nest-Based Access Introduced in Java 11?
+#### Why was Nest-Based Access Introduced in Java 11?
 #### Before Java 11:
 - The compiler generated **bridge methods** to allow private member access.
 - These additional methods increased **bytecode size** and **runtime complexity**.
@@ -668,7 +668,7 @@ Java supports four types of nested classes:
 
 ---
 
-#### 🔹 Example: Nest-Based Access in Java 11
+#### Example: Nest-Based Access in Java 11
 #### ✅ Before Java 11 (Using Bridge Methods)
 ```java
 class OuterClass {
@@ -702,14 +702,14 @@ public class Main {
 }
 ```
 
-#### 🔹 Key Changes in Java 11:
+#### Key Changes in Java 11:
 - **No synthetic bridge methods** are created.
 - **Direct private member access** is allowed.
 - **Improved performance** and **reduced bytecode size**.
 
 ---
 
-#### 🔹 Benefits of Nest-Based Access Control
+#### Benefits of Nest-Based Access Control
 ✔ **Reduces bytecode size** (No extra bridge methods).
 ✔ **Improves runtime efficiency** (Direct access to private members).
 ✔ **Enhances maintainability** (Cleaner and more readable code).
