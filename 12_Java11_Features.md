@@ -9,7 +9,7 @@
 - Local Variable Type Inference (`var`) in Lambdas
 
 
-##### Why is Java 11 Important?
+#### Why is Java 11 Important?
 
 - Java 11 is the second Long-Term Support (LTS) release after Java 8.**
 - Oracle JDK is no longer free for commercial use starting from Java 11.**
