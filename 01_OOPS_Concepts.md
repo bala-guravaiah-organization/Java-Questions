@@ -1,6 +1,4 @@
 #### What are the 4 pillars of OOPS?
-
-#### Answer: The 4 pillars of OOPS are:
 1. Abstraction
 2. Encapsulation
 3. Inheritance
@@ -53,8 +51,6 @@ Polymorphism means "many forms." It allows an object or function to take differe
 ---
 
 #### What is an abstract class?
-
-#### Answer:
 A class that is declared using the `abstract` keyword is known as an **abstract class**. It can have both **abstract methods** (methods without a body) and **concrete methods** (methods with a body).
 
 #### Key Points to Remember:
@@ -100,8 +96,6 @@ In display method
 ---
 
 #### Does an Abstract class have a constructor?
-
-#### Answer:
 Yes, abstract classes have constructors. You can either provide one explicitly or Java will provide a default constructor.
 
 #### Why do abstract classes need constructors?
@@ -152,7 +146,6 @@ b = 10
 
 #### what are the Differences between Abstract Class and Interface
 
-#### Answer:
 | Feature | Abstract Class | Interface |
 |---------|---------------|-----------|
 | Methods | Can have both abstract and concrete methods | Can only have abstract methods (except Java 8+ which allows default & static methods) |
@@ -165,7 +158,6 @@ b = 10
 
 #### What to choose – Interface or Abstract Class?
 
-#### Answer:
 - Use **abstract class** when you want to provide **default implementations** of methods that subclasses can directly use.
 - Use **interfaces** when your **contract keeps changing** to avoid forcing changes on implementing classes.
 - **Best practice:** Prefer **interfaces** in most cases.
@@ -174,7 +166,6 @@ b = 10
 
 #### Why was Java 8 introduced default methods?
 
-#### Answer:
 Default methods were introduced in Java 8 to allow adding new methods to interfaces **without breaking existing implementations**.
 
 #### Example Scenario:
@@ -186,7 +177,6 @@ If two interfaces define the same **default method**, a class implementing both 
 
 #### How does Java handle the Diamond Problem with default methods?
 
-#### Answer:
 When two interfaces have default methods with the same name, and a class implements both interfaces **without overriding the method**, Java will throw a compilation error due to ambiguity. To resolve this, the implementing class must **explicitly override the conflicting method** and specify which interface's method to call.
 
 #### Example Code:
@@ -233,7 +223,6 @@ By overriding the method, the Diamond Problem is resolved in Java.
 
 #### Why Java 8 has introduced static methods?
 
-#### Answer:
 Before Java 8, utility methods were typically placed in classes with static methods, such as `Collections` or `Math`. However, Java 8 introduced **static methods in interfaces** to allow utility methods to be defined directly within interfaces.
 
 #### Benefits of Static Methods in Interfaces:
@@ -325,7 +314,6 @@ The overriding method of a child class must follow the rules below:
 
 #### Can we override final methods?
 
-### Answer:
 No, final methods cannot be overridden.
 
 ---
@@ -336,7 +324,7 @@ No.
 
 ---
 
-#### Question 13: What is the final keyword and where can it be used?
+#### What is the final keyword and where can it be used?
 
 - If you use `final` with a **primitive type variable**, then its value cannot be changed once assigned.
 - If you use `final` with a **method**, then you cannot override it in the subclass.

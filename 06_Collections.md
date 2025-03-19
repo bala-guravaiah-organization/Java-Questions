@@ -1,14 +1,14 @@
-### Explain Comaprable and Comparator and their differences ?
+#### Explain Comaprable and Comparator and their differences ?
 
 Both `Comparable` and `Comparator` interfaces are used for sorting collections of objects in Java. These interfaces should be implemented in custom classes to use sorting methods from `Arrays` and `Collections` classes.
 
 #### Key Differences & Usage
 
-### 1. Comparable (`java.lang.Comparable`)
-- ✅ Defines **natural ordering** of objects.
-- ✅ Requires implementing the `compareTo(T obj)` method.
-- ✅ Sorting logic is **defined within the entity class** itself.
-- ✅ Used when a class has a **single natural sorting order**.
+#### 1. Comparable (`java.lang.Comparable`)
+- Defines **natural ordering** of objects.
+- Requires implementing the `compareTo(T obj)` method.
+- Sorting logic is **defined within the entity class** itself.
+- Used when a class has a **single natural sorting order**.
 
 #### Sorting Rules in `compareTo(T obj)`:
 - Return **negative integer** if `this` object is **less than** the passed object.
@@ -16,10 +16,10 @@ Both `Comparable` and `Comparator` interfaces are used for sorting collections o
 - Return **zero** if both objects are **equal**.
 
 ### 2. Comparator (`java.util.Comparator`)
-- ✅ Defines **custom sorting** outside the entity class.
-- ✅ Requires implementing the `compare(T obj1, T obj2)` method.
-- ✅ Can have **multiple sorting criteria** (e.g., sorting by name, salary, age).
-- ✅ Allows sorting **without modifying** the original entity class.
+- Defines **custom sorting** outside the entity class.
+- Requires implementing the `compare(T obj1, T obj2)` method.
+- Can have **multiple sorting criteria** (e.g., sorting by name, salary, age).
+- Allows sorting **without modifying** the original entity class.
 
 #### Examples
 

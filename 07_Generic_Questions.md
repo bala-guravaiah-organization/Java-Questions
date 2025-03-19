@@ -370,8 +370,6 @@ class Test {
 
 #### **What is Variable Shadowing and Variable Hiding in Java?**
 
-#### **Answer:**
-
 #### **1. Variable Shadowing**
 Variable shadowing occurs when a **local variable** inside a method has the **same name** as an instance variable. The local variable **shadows** the instance variable inside the method block.
 
@@ -822,7 +820,7 @@ This document explains `Cloneable` with examples, covering **shallow copy vs dee
 
 Deep copying in Java ensures that a cloned object has a completely independent copy of its fields, including any referenced objects. Here, we discuss two methods to perform deep copying:
 
-### 1. Using Serialization
+#### 1. Using Serialization
 This approach serializes the original object into a byte stream and then deserializes it to create a deep copy.
 
 #### Example:

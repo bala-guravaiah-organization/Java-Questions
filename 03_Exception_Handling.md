@@ -1,8 +1,5 @@
-## Exception Handling in Java
-
 #### What is an Exception and Exception Handling?
 
-#### Answer:
 An **exception** is an event that **disrupts** the normal flow of a program. It is an **object** that is thrown at runtime.  
 **Exception Handling** is the process of **managing** these exceptions to ensure the program continues to run smoothly.
 
@@ -82,8 +79,6 @@ Program continues...
 
 #### How is exception handling done in Java?
 
-**Answer:**
-
 Exception handling in Java is done using the `try-catch` block. If you think that certain statements may throw an exception, surround them with a `try` block.
 
 #### ✅ Key Points to Remember:
@@ -106,8 +101,6 @@ try {
 
 #### Can we write a try block without a catch block?
 
-**Answer:**
-
 Yes, we can write a `try` block with a `finally` block, but we cannot write a `try` block alone.
 
 #### ✅ Key Points to Remember:
@@ -115,8 +108,6 @@ Yes, we can write a `try` block with a `finally` block, but we cannot write a `t
 - If a `finally` block is present, it will always execute, even if an exception occurs.
 
 #### Question 6: How to handle multiple exceptions together?
-
-**Answer:**
 
 You can write multiple `catch` blocks one after another for each exception, or you can write a single `catch` block using a pipe symbol (`|`) to separate the exceptions.
 
@@ -154,15 +145,11 @@ try {
 
 #### When will the finally block not get executed?
 
-**Answer:**
-
 The `finally` block will not execute in the following cases:
 - When `System.exit()` is called.
 - When the JVM crashes.
 
 #### Difference between `throw` and `throws` keyword & Exception Propagation
-
-**Answer:**
 
 #### ✅ Key Differences Between `throw` and `throws`:
 - `throw` is used to **explicitly throw an exception** inside a function or a block of code.
@@ -192,8 +179,6 @@ public void readFile() throws IOException {
 ```
 
 #### Exception Propagation
-
-**Answer:**
 
 #### ✅ Key Points:
 - An exception is first thrown from the top of the stack.

@@ -1,6 +1,6 @@
 
 #### Can a constructor be private? In which scenarios is it useful?
-#### **Answer:**  
+ 
 Yes, a constructor can be `private` in Java. This is mainly used in:  
 1. **Singleton Design Pattern:** Ensures only one instance of a class exists.  
 2. **Factory Methods:** Restricts direct object creation and allows controlled instantiation via static methods.  
