@@ -144,7 +144,8 @@ Finalize method executed
 - ❌ **Performance Overhead**: Slows down garbage collection if misused.
 - ❌ **Deprecated in Java 9**: Java 9 officially deprecated `finalize()` due to its unpredictability.
 
-#### Alternatives
+---
+#### What are the Better Alternatives after Java 9?
 Instead of using `finalize()`, use the following methods:
 
 | Approach                | Description |
@@ -165,16 +166,16 @@ Instead of using `finalize()`, use the following methods:
 #### Explain Stack and Heap in Java ?
 
 #### Stack Memory
-✅ **Used for:** Storing **method-specific** data (local variables, method calls).
-✅ **Memory Allocation:** **LIFO (Last In, First Out)** principle.
-✅ **Scope:** Thread-specific (Each thread has its own Stack).
-✅ **Stores:**
+- **Used for:** Storing **method-specific** data (local variables, method calls).
+- **Memory Allocation:** **LIFO (Last In, First Out)** principle.
+-  **Scope:** Thread-specific (Each thread has its own Stack).
+- **Stores:**
    - Local primitive variables (`int`, `double`, etc.).
    - References to objects (actual objects are in Heap).
    - Method execution details (return addresses, function calls).
-✅ **Size:** Small and grows/shrinks with method calls.
-✅ **Access Speed:** Fast (direct memory access).
-✅ **Garbage Collection:** No (automatically removed when method exits).
+- **Size:** Small and grows/shrinks with method calls.
+- **Access Speed:** Fast (direct memory access).
+- **Garbage Collection:** No (automatically removed when method exits).
 
 #### Example:
 ```java
@@ -189,15 +190,15 @@ void methodB() {
 ---
 
 #### Heap Memory
-✅ **Used for:** Storing **objects and instance variables**.
-✅ **Memory Allocation:** **Dynamic (grows as needed)**.
-✅ **Scope:** Shared across all threads.
-✅ **Stores:**
+- **Used for:** Storing **objects and instance variables**.
+- **Memory Allocation:** **Dynamic (grows as needed)**.
+- **Scope:** Shared across all threads.
+- **Stores:**
    - Objects (created via `new` keyword).
    - Instance variables (fields of objects).
-✅ **Size:** Larger than Stack.
-✅ **Access Speed:** Slower than Stack (requires reference lookups).
-✅ **Garbage Collection:** **Yes**, managed by Java's **Garbage Collector**.
+- **Size:** Larger than Stack.
+- **Access Speed:** Slower than Stack (requires reference lookups).
+- **Garbage Collection:** **Yes**, managed by Java's **Garbage Collector**.
 
 #### Example:
 ```java
