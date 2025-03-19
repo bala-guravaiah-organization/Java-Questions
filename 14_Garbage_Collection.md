@@ -308,6 +308,155 @@ public class HeapExample {
 - When memory is low.
 - When `System.gc();` is called (not guaranteed).
 - Periodically, based on JVM algorithms.
+---
 
+#### Explain Strong Reference vs Weak Reference in Java?
 
+In Java, references determine how objects are stored and garbage collected. The two most common reference types are **Strong Reference** and **Weak Reference**.
+
+---
+
+#### 1. Strong Reference (Default Reference in Java)
+A **strong reference** is the normal way objects are referenced in Java. As long as a strong reference exists, the object **will not be garbage collected**.
+
+#### Example of Strong Reference
+```java
+class StrongRefExample {
+    public static void main(String[] args) {
+        // Creating a strong reference
+        String strongRef = new String("Hello, Java!");
+
+        // Making it null, now it's eligible for GC
+        strongRef = null;
+
+        // Suggesting Garbage Collection
+        System.gc();
+
+        System.out.println("End of program");
+    }
+}
+```
+#### Explanation
+- Objects with strong references are **not garbage collected** until explicitly set to `null`.  
+- This is the default way objects are referenced in Java.  
+
+---
+
+#### 2. Weak Reference
+A **weak reference** allows objects to be garbage collected **even if they are still referenced somewhere**. This is useful in cases like caching where objects should be removed when memory is needed.
+
+#### Example of Weak Reference
+```java
+import java.lang.ref.WeakReference;
+
+class WeakRefExample {
+    public static void main(String[] args) {
+        // Strong Reference
+        String strongRef = new String("Hello, WeakReference!");
+
+        // Creating a Weak Reference
+        WeakReference<String> weakRef = new WeakReference<>(strongRef);
+
+        // Removing Strong Reference
+        strongRef = null;
+
+        // Suggest Garbage Collection
+        System.gc();
+
+        // Trying to access weak reference
+        System.out.println("Weak Reference: " + weakRef.get()); // May print "null" if GC has collected it
+    }
+}
+```
+#### Explanation
+- If there is no strong reference, GC will remove the object.  
+- Used for **caching** and **memory-sensitive applications**.  
+
+---
+
+#### What are the Differences Between Strong and Weak References?
+
+| Feature | **Strong Reference** | **Weak Reference** |
+|---------|------------------|----------------|
+| **Garbage Collection** | Object is **not** eligible for GC if strongly referenced | Object is eligible for GC even if referenced |
+| **Use Case** | Normal objects that should persist in memory | Objects that can be removed when memory is low (caching, maps) |
+| **Performance Impact** | Can cause **memory leaks** if not set to `null` properly | Helps in **efficient memory management** |
+| **Example** | `String str = new String("Hello");` | `WeakReference<String> weakStr = new WeakReference<>(str);` |
+
+---
+
+#### Real-Time Example: Caching System Using `WeakHashMap`
+#### Scenario
+Imagine you are building a **user session management system** where user sessions are stored in a cache. However, you don’t want inactive sessions to occupy memory forever. If a session is no longer referenced, it should be **automatically removed**.
+
+#### Example Code
+```java
+import java.util.Map;
+import java.util.WeakHashMap;
+
+class User {
+    String name;
+
+    User(String name) {
+        this.name = name;
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        System.out.println(name + " is garbage collected");
+    }
+}
+
+public class WeakHashMapExample {
+    public static void main(String[] args) throws InterruptedException {
+        // Using WeakHashMap to store user sessions
+        Map<User, String> userCache = new WeakHashMap<>();
+
+        User user1 = new User("Alice");
+        User user2 = new User("Bob");
+
+        // Adding users to the cache
+        userCache.put(user1, "Session1");
+        userCache.put(user2, "Session2");
+
+        System.out.println("Before GC: " + userCache);
+
+        // Remove strong references
+        user1 = null;
+        user2 = null;
+
+        // Suggesting garbage collection
+        System.gc();
+
+        // Waiting for GC to run
+        Thread.sleep(2000);
+
+        System.out.println("After GC: " + userCache);
+    }
+}
+```
+#### Output (May Vary)
+```
+Before GC: {Alice=Session1, Bob=Session2}
+Alice is garbage collected
+Bob is garbage collected
+After GC: {}
+```
+
+#### Explanation
+- **Before GC**: The `WeakHashMap` holds weak references to the `User` objects.
+- **After GC**: Since `user1` and `user2` were set to `null`, they became **eligible for garbage collection**, and `WeakHashMap` automatically removed them.
+
+---
+
+#### When to Use Each Reference Type?
+
+| **Use Case** | **Strong Reference** | **Weak Reference** |
+|-------------|------------------|----------------|
+| **Normal Object Usage** | ✅ Yes | ❌ No |
+| **Caching (e.g., User Sessions, Temporary Objects)** | ❌ No | ✅ Yes |
+| **Preventing Memory Leaks** | ❌ No | ✅ Yes |
+| **Collections (`WeakHashMap`)** | ❌ No | ✅ Yes |
+
+---
 

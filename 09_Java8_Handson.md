@@ -211,7 +211,7 @@ public class MergeArraysDemo {
 ```
 ---
 #### Given two lists of numbers, how would you return all pairs of numbers? 
-**For example, given a list [1, 2, 3] and a list [3, 4] you should return [(1, 3), (1, 4), (2, 3), (2, 4),(3, 3), (3, 4)].**
+For example, given a list [1, 2, 3] and a list [3, 4] you should return [(1, 3), (1, 4), (2, 3), (2, 4),(3, 3), (3, 4)].
 
 
 ```java
@@ -242,7 +242,7 @@ public class MergeArraysDemo {
 
 #### Step-by-Step Execution
 
-#### **Step 1: Convert `numbers1` to a Stream**
+##### **Step 1: Convert `numbers1` to a Stream**
 ```java
 numbers1.stream()
 ```
@@ -251,7 +251,7 @@ numbers1.stream()
   Stream<Integer> -> {1, 2, 3}
   ```
 
-#### **Step 2: Process Each Element `i` in `numbers1`**
+##### **Step 2: Process Each Element `i` in `numbers1`**
 ```java
 flatMap(i -> numbers2.stream()
 ```
@@ -261,7 +261,7 @@ flatMap(i -> numbers2.stream()
   ```
 - This step repeats for each `i` in `numbers1`.
 
-#### **Step 3: Map Each Element `j` in `numbers2` to a Pair**
+##### **Step 3: Map Each Element `j` in `numbers2` to a Pair**
 ```java
 .map(j -> new int[]{i, j})
 ```
@@ -276,7 +276,7 @@ For each `j` from `numbers2`, create an `int[]` containing `(i, j)`:
 | 3               | 3                | [3,3]                    |
 | 3               | 4                | [3,4]                    |
 
-#### **Step 4: Flattening Streams Using `flatMap()`**
+##### **Step 4: Flattening Streams Using `flatMap()`**
 Before `flatMap()`, we have multiple individual streams of `int[]` pairs:
 ```
 Stream<int[]> from i=1 → [1,3], [1,4]
@@ -288,13 +288,13 @@ After `flatMap()`, these streams are merged into a **single** stream:
 Single Stream<int[]> → [[1,3], [1,4], [2,3], [2,4], [3,3], [3,4]]
 ```
 
-#### **Step 5: Collecting the Results**
+##### **Step 5: Collecting the Results**
 ```java
 .collect(Collectors.toList());
 ```
 - Converts the **flattened stream** into a `List<int[]>`.
 
-#### **Step 6: Printing the Output**
+##### **Step 6: Printing the Output**
 ```java
 for (int[] ks : pairs) {
     System.out.println(Arrays.toString(ks));
@@ -342,7 +342,7 @@ public class MergeArraysDemo {
 
 #### Step-by-Step Execution
 
-#### **Step 1: Convert `numbers1` to a Stream**
+##### **Step 1: Convert `numbers1` to a Stream**
 ```java
 numbers1.stream()
 ```
@@ -351,7 +351,7 @@ numbers1.stream()
   Stream<Integer> -> {1, 2, 3}
   ```
 
-#### **Step 2: Process Each Element `i` in `numbers1`**
+##### **Step 2: Process Each Element `i` in `numbers1`**
 ```java
 flatMap(i -> numbers2.stream()
 ```
@@ -361,7 +361,7 @@ flatMap(i -> numbers2.stream()
   ```
 - This step repeats for each `i` in `numbers1`.
 
-#### **Step 3: Apply Filtering Condition**
+##### **Step 3: Apply Filtering Condition**
 ```java
 .filter(j -> (i + j) % 3 == 0)
 ```
@@ -376,7 +376,7 @@ flatMap(i -> numbers2.stream()
 | 3               | 3                | 6           | ✅ (6 % 3 == 0)              | [3,3]                    |
 | 3               | 4                | 7           | ❌ (7 % 3 != 0)              | Not included            |
 
-#### **Step 4: Flattening Streams Using `flatMap()`**
+##### **Step 4: Flattening Streams Using `flatMap()`**
 Before `flatMap()`, we have multiple individual streams of `int[]` pairs:
 ```
 Stream<int[]> from i=1 → []
@@ -388,13 +388,13 @@ After `flatMap()`, these streams are merged into a **single** stream:
 Single Stream<int[]> → [[2,4], [3,3]]
 ```
 
-#### **Step 5: Collecting the Results**
+##### **Step 5: Collecting the Results**
 ```java
 .collect(Collectors.toList());
 ```
 - Converts the **flattened stream** into a `List<int[]>`.
 
-#### **Step 6: Printing the Output**
+##### **Step 6: Printing the Output**
 ```java
 for (int[] ks : list) {
     System.out.println(Arrays.toString(ks));
@@ -445,9 +445,9 @@ output : [2, 4]
 ---
 #### Write a Java 8 method that takes a list of strings and a character, and returns a new list containing only the strings that start with that character. 
 
-#### Different Approaches
+##### Different Approaches
 
-#### 1️⃣ Best Approach: Using `mapToInt().sum()` ✅
+##### - Best Approach: Using `mapToInt().sum()`
 ```java
 List<Integer> words = List.of(1, 2, 3, 4, 5);
 int sum = words.stream()
@@ -456,14 +456,14 @@ int sum = words.stream()
     .sum();
 System.out.println(sum);
 ```
-#### ✅ Why Best?
+##### ✅ Why Best?
 - **Fastest**: Uses **primitive int stream**, avoiding unnecessary boxing/unboxing.
 - **Short & Readable**: Computes sum in a single pass.
 - **No Optional Handling Needed**: Directly returns `int`.
 
 ---
 
-#### 2️⃣ Alternative Approach: Using `reduce()` with `Optional<Integer>`
+##### Alternative Approach: Using `reduce()` with `Optional<Integer>`
 ```java
 List<Integer> words = List.of(1, 2, 3, 4, 5);
 Optional<Integer> optionalInteger = words.stream()
@@ -471,14 +471,14 @@ Optional<Integer> optionalInteger = words.stream()
     .reduce((num1, num2) -> num1 + num2);
 System.out.println(optionalInteger.orElse(0));
 ```
-#### 🟡 Why Second?
+##### 🟡 Why Second?
 - **Less Efficient**: Uses **auto-boxing**, leading to performance overhead.
 - **Requires Optional Handling**: Needs `orElse(0)` to handle empty lists safely.
 - **Useful for Custom Reduction Logic**: Best when more than just sum is needed.
 
 ---
 
-#### 3️⃣ Worst Approach: Using `Collectors.summarizingInt()` ❌
+##### Worst Approach: Using `Collectors.summarizingInt()` ❌
 ```java
 List<Integer> words = List.of(1, 2, 3, 4, 5);
 IntSummaryStatistics intSummaryStatistics = words.stream()
@@ -486,7 +486,7 @@ IntSummaryStatistics intSummaryStatistics = words.stream()
     .collect(Collectors.summarizingInt(i -> i));
 System.out.println(intSummaryStatistics.getSum());
 ```
-#### ❌ Why Worst?
+##### ❌ Why Worst?
 - **Unnecessary Computation Overhead**: Calculates min, max, count, and average when only sum is needed.
 - **More Memory Usage**: Stores extra statistics that are not needed.
 - **Less Readable**: Adds unnecessary complexity.
@@ -494,7 +494,7 @@ System.out.println(intSummaryStatistics.getSum());
 ---
 #### **output :** 6 
 ---
-#### Final Ranking
+##### Final Ranking
 | Approach | Performance | Readability | Suitability |
 |----------|------------|-------------|-------------|
 | `mapToInt().sum()` ✅ | **Best** (Primitive Stream) | **Best** (Simple & Direct) | **Best for Summing** |
