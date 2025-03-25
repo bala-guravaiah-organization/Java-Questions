@@ -231,14 +231,14 @@ switch (obj) {
 
 ---
 
-## **5. Improved Performance**
+### **5. Improved Performance**
 Pattern Matching optimizes **type checks and casting** at the compiler level, making it more efficient than multiple `if-else` checks.
 
 ✅ **Advantage:** **Better performance** due to compiler optimizations.
 
 ---
 
-## **Comparison Table**
+### **Comparison Table**
 | Feature                     | `instanceof` Checks | Pattern Matching in `switch` |
 |-----------------------------|---------------------|-----------------------------|
 | **Type Checking**           | ✅ Supported       | ✅ Supported               |
