@@ -652,6 +652,64 @@ Triangle with area: 6.0
 
 ---
 
+## Trick Questions
+### Can you use Pattern Matching switch inside a Java stream operation?
+
+When working with Java Streams, we can use Pattern Matching inside stream operations like `.map()` to transform elements based on their types efficiently.
+
+#### Example Usage
+
+Here’s an example demonstrating how to use **Pattern Matching for `switch`** inside a Stream operation:
+
+#### Code Example
+
+```java
+import java.util.List;
+
+public class PatternMatchingInStream {
+    public static void main(String[] args) {
+        List<Object> elements = List.of("Java", 100, 3.14, true, "Spring");
+
+        elements.stream()
+                .map(element -> switch (element) {
+                    case String s -> "String: " + s.toUpperCase();
+                    case Integer i -> "Integer: " + (i * 2);
+                    case Double d -> "Double: " + (d / 2);
+                    case Boolean b -> "Boolean: " + (!b);
+                    default -> "Unknown Type";
+                })
+                .forEach(System.out::println);
+    }
+}
+```
+
+#### Explanation
+- The `switch` statement inside `.map()` performs **Pattern Matching** to check the type of each element.
+- Based on the type, different transformations are applied:
+  - Converts `String` to **uppercase**.
+  - Multiplies `Integer` values by **2**.
+  - Divides `Double` values by **2**.
+  - Negates `Boolean` values.
+- The `default` case ensures that any unknown types are handled safely.
+
+#### Expected Output
+```
+String: JAVA
+Integer: 200
+Double: 1.57
+Boolean: false
+String: SPRING
+```
+
+#### Key Takeaways
+✅ **Pattern Matching for `switch`** eliminates the need for manual type checking and casting.  
+✅ Works seamlessly inside **Java Stream operations** like `.map()`.  
+✅ Requires **Java 17+** (finalized in Java 21).  
+
+
+
+
+
 
 
 
