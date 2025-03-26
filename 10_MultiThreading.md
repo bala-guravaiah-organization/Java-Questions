@@ -1,14 +1,98 @@
-#### What is Multithreading in Java
+### Multithreading Terminology - Fast Track Guide
 
-Multithreading in Java allows multiple threads to execute concurrently, enabling efficient CPU utilization and faster program execution. It is useful for tasks like parallel processing, background computations, and responsive UI applications.
+#### CPU & Core
+- **CPU (Central Processing Unit):** Executes program instructions.
+- **Core:** An independent processing unit within a CPU. More cores enable true parallel execution.
+  - Example: A **quad-core processor** can run four tasks simultaneously (e.g., web browser, music player, downloads, system updates).
 
-#### Key Concepts
-- **Thread:** A lightweight subprocess that executes independently.
-- **Concurrency:** Multiple threads execute in an interleaved manner.
-- **Parallelism:** True parallel execution when multiple CPUs are available.
-- **Synchronization:** Controlling thread access to shared resources to prevent conflicts.
+#### Program vs. Process vs. Thread
+- **Program:** A set of instructions written in a programming language (e.g., Microsoft Word).
+- **Process:** An instance of a running program. The OS manages its execution.
+  - Example: Opening **Microsoft Word** creates a new process.
+- **Thread:** The smallest unit of execution within a process. Threads share resources but execute independently.
+  - Example: A **web browser** runs multiple threads—one for rendering, one for JavaScript, one for user input.
+
+#### Multitasking vs. Multithreading
+- **Multitasking:** Running multiple processes simultaneously.
+  - **Single-core CPU:** Uses time-sharing (rapid switching).
+  - **Multi-core CPU:** Runs tasks in true parallel.
+  - Example: Browsing the internet while listening to music and downloading a file.
+- **Multithreading:** Running multiple threads **within the same process**.
+  - Example: A web browser using separate threads for rendering, scripting, and user interaction.
+
+#### Key Mechanism: Context Switching
+- **Definition:** The OS saves the state of a running process/thread and loads the next one.
+- **Purpose:** Allows multiple processes/threads to share the CPU efficiently.
+  - **Single-core CPU:** Creates an **illusion** of parallel execution.
+  - **Multi-core CPU:** Enables **true** parallel execution by distributing tasks across cores.
+
+#### Multitasking vs. Multithreading – Key Difference
+- **Multitasking:** Manages **multiple applications** (processes).
+- **Multithreading:** Manages **multiple threads** within a **single** application/process.
 
 ---
+
+### Concurrency vs. Parallelism
+
+#### 🚀 Concurrency
+#### **Definition**
+> Concurrency means executing multiple tasks **in overlapping time periods**, but **not necessarily at the same time**.
+
+#### **Example**
+Imagine you are **singing** and **eating** at the same time. Since both require your mouth, you cannot do them **simultaneously**. Instead, you will **switch between them**, i.e., eat for some time, then sing, then eat again. 
+
+🔹 **Concurrency = Task Switching** (one task at a time, but switching between tasks quickly)
+
+#### **How It Works in Computers?**
+- In a **single-core processor**, concurrency is achieved using **context switching**, where the CPU rapidly switches between tasks.
+
+```plaintext
+Task 1 -> Task 2 -> Task 1 -> Task 2 (Switching back and forth)
+```
+
+---
+
+#### ⚡ Parallelism
+#### **Definition**
+> Parallelism means executing multiple tasks **simultaneously** at the same time.
+
+#### **Example**
+Imagine you are **cooking** while **talking on the phone**. Both actions can happen at the same time because they use different resources (hands for cooking, mouth for talking).
+
+🔹 **Parallelism = Tasks running at the same time on multiple resources**
+
+#### **How It Works in Computers?**
+- In a **multi-core processor**, tasks can run truly **in parallel**, meaning different tasks run on different cores **without switching**.
+
+```plaintext
+Task 1 | Task 2 (Executing at the same time on different cores)
+```
+
+---
+
+#### 🔄 Concurrency vs. Parallelism
+| Feature       | Concurrency | Parallelism |
+|--------------|------------|------------|
+| Execution | Tasks start, run, and complete in overlapping time but **not simultaneously** | Tasks run **at the same time** |
+| Example | Singing & Eating (Switching) | Cooking & Talking (Simultaneous) |
+| Processor | Works on **single-core** | Requires **multi-core** |
+| Technique | **Context Switching** | **True Parallel Execution** |
+
+---
+
+#### 🔗 How They Are Related?
+✅ **Concurrency enables Parallelism** when multiple cores are available.  
+✅ In a **single-core CPU**, tasks execute **one after another** using **context switching**.  
+✅ In a **multi-core CPU**, tasks can be executed **truly in parallel** without switching.  
+
+---
+
+#### 🏁 Conclusion
+- **Use Concurrency** when you have a **single-core CPU** or want to efficiently switch between multiple tasks.
+- **Use Parallelism** when you have a **multi-core CPU** and want to perform tasks **truly simultaneously**.
+
+---
+
 #### What are the ways to Create Threads in Java ?
 Java provides two main ways to create threads:
 
@@ -48,9 +132,6 @@ class MyRunnable implements Runnable {
 - **Race conditions:** Multiple threads modifying shared data without synchronization.
 - **Deadlocks:** Two or more threads waiting indefinitely for each other.
 - **Thread starvation:** Some threads not getting CPU time due to high-priority threads.
-
-#### Conclusion
-Multithreading is a powerful feature in Java for improving performance and efficiency. However, proper synchronization is essential to avoid concurrency issues.
 
 ---
 #### What are the Differences Between `Runnable` and `Thread`?
@@ -138,13 +219,60 @@ public class ThreadExample {
 | **Register** | Fast storage inside CPU for temporary data |
 | **Program Counter (PC)** | Holds address of the next instruction |
 ---
-**To understand better use this Link given by Concept and Coding by Shreyansh Jain.**
-
-https://notebook.zohopublic.in/public/notes/74tdo52a4834de5554f09bc9ec3f11572cd11
 
 #### Thread Life Cycle:
 
 ![Thread Life Cycle](Useful_Important_Concept_Images/MultiThreading_Thread_Life_Cycle.jpg)
+
+
+
+#### Synchronous vs Asynchronous Programming in Concurrency & Parallelism
+
+| Feature         | **Synchronous** | **Asynchronous** |
+|---------------|----------------|------------------|
+| **Execution** | Tasks run one after another, blocking the thread until completion. | Tasks can run independently, without blocking the thread. |
+| **Concurrency** | Limited concurrency; each task must finish before the next one starts. | Supports high concurrency by scheduling tasks to run when resources are available. |
+| **Parallelism** | Typically single-threaded unless used with multi-threading. | Can achieve parallelism when combined with multi-threading. |
+| **Thread Usage** | Usually single-threaded, but can use multiple threads explicitly. | Can use multiple threads, event loops, or callbacks to improve efficiency. |
+| **Example** | Reading files one by one in sequence. | Reading multiple files simultaneously using non-blocking I/O. |
+
+#### How Asynchronous and Synchronous Programming Related to Concurrency & Parallelism ? 
+
+#### **Concurrency**
+- Multiple tasks are executed *in an overlapping manner* (not necessarily at the same time).  
+- **Synchronous concurrency**: Uses multi-threading but blocks when waiting.  
+- **Asynchronous concurrency**: Uses event-driven programming (e.g., Java's `CompletableFuture`, Spring WebFlux).  
+
+#### **Parallelism**
+- Multiple tasks execute *exactly at the same time* using multiple CPU cores.  
+- **Synchronous parallelism**: Uses multi-threading but with blocking operations.  
+- **Asynchronous parallelism**: Uses non-blocking calls with multi-threading (e.g., Java's `ForkJoinPool`).  
+
+### Example: Java 8 Asynchronous Execution using `CompletableFuture`
+```java
+import java.util.concurrent.CompletableFuture;
+
+public class AsyncExample {
+    public static void main(String[] args) {
+        CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
+            System.out.println("Executing asynchronously in thread: " + Thread.currentThread().getName());
+        });
+        future.join(); // Wait for completion
+    }
+}
+```
+
+#### Conclusion
+- **Synchronous programming** is simple but may cause blocking and performance issues.
+- **Asynchronous programming** improves efficiency by non-blocking execution.
+- Choosing between them depends on the use case, resource availability, and application requirements.
+---
+
+
+
+
+
+
 
 
 
