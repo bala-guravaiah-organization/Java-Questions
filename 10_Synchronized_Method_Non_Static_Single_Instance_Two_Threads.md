@@ -161,6 +161,7 @@ The sequential output (all `Thread-0` then all `Thread-1`) is a result of `Threa
 
 ---
 
+**Different objects = different locks = no blocking between them**
 
 
 
