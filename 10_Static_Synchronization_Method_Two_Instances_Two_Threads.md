@@ -247,6 +247,16 @@ Without `synchronized`, two threads could access `balance` simultaneously, leadi
 
 **Use Case**: Perfect for protecting static variables like balance that belong to the class, not individual instances.
 
+### Differences Between Non-Static and Static Synchronized Methods
+
+| Aspect                        | Non-Static Synchronized Method     | Static Synchronized Method       |
+|-------------------------------|------------------------------------|----------------------------------|
+| **Lock Object**               | The instance (`this`)             | The `Class` object (e.g., `Counter.class`) |
+| **Scope**                     | Per instance of the class         | Across the entire class         |
+| **Concurrency**               | Threads can run on different instances | Only one thread can run at a time, period |
+| **Use Case**                  | Protect instance-specific data    | Protect class-level (static) data |
+
+
 
 
 
