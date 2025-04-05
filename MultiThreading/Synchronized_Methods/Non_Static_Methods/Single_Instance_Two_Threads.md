@@ -1,3 +1,8 @@
+### Thumb Rule
+***Different objects = different locks = no blocking between them***
+
+---
+
 **Synchronized Method(Non-Static - Single Instance - two Threads)** :
 ```java
 package com.seleniumexpress.java8.multithreading;
@@ -161,7 +166,7 @@ The sequential output (all `Thread-0` then all `Thread-1`) is a result of `Threa
 
 ---
 
-**Different objects = different locks = no blocking between them**
+
 
 
 

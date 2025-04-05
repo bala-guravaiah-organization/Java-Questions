@@ -1,4 +1,10 @@
-#### **Simple Rule**: Only one thread can run deposit() or withdraw() at a time, no matter how many Bank objects exist (or even if none exist).
+### Thumb Rule: 
+
+***Single class = single lock = blocking across all objects (or none)***
+
+---
+
+
 
 **What is a Static Synchronized Method?**
 A **static synchronized method** is a method marked with the `synchronized` keyword that belongs to the class itself (not an instance). When a thread enters this method, it acquires a lock on the `Class` object associated with the class (e.g., `MyClass.class`). This ensures that only one thread can execute any static synchronized method of that class at a time, regardless of how many instances exist or even if no instances exist.

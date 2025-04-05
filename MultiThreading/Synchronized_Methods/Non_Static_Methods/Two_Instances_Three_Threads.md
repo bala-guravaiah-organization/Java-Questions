@@ -1,4 +1,8 @@
-package com.seleniumexpress.java8.multithreading;
+### Thumb Rule :
+***Different objects = different locks = no blocking between them***
+
+---
+```java
 
 public class Counter {
 	
@@ -57,7 +61,9 @@ public class Counter {
 
 }
 
-output :
+```
+
+**output :**
 
 ```java
 Lock Acquired by Thread-0
@@ -118,5 +124,5 @@ The `lock` is on the instance (counter1 or counter2), not the class. Different o
 
 
 
-**Different objects = different locks = no blocking between them**
+
 
