@@ -122,17 +122,3 @@ The lines might mix because Person-1 and Person-2 work together. Thatâ€™s fineâ€
 - Same idea for `checkingLock` in `depositChecking()`.
 
 ---
-
-
-
-
-
-
-
-
-
-
-
-
-
-
